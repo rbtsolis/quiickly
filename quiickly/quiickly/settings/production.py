@@ -29,7 +29,6 @@ DATABASES = {
     }
 }
 
-NAME = 'ASD'
 
 '''
 
