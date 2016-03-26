@@ -32,8 +32,8 @@ Static files configurations on Amazon S3
 '''
 AWS_STORAGE_BUCKET_NAME = 'upstudy'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAITEOIGGQ5Z5TIATQ'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAJC65GDXJ6RCHWX6A'
+AWS_SECRET_ACCESS_KEY = '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'
 
 STATIC_URL = 'https://s3.amazonaws.com/upstudy/'
 
