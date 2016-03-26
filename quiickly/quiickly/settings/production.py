@@ -40,7 +40,7 @@ STATIC_URL = 'https://s3.amazonaws.com/quiickly/'
 STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    join(BASE_DIR, 'static'),
 )
 
 STATICFILES_FINDERS = (
