@@ -27,21 +27,32 @@ DATABASES = {
 
 '''
 
-Static and media files configurations
+Static files configurations on Amazon S3
 
 '''
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+AWS_STORAGE_BUCKET_NAME = 'quiickly'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAJ6WKK6Q33RGKRYWA'
+AWS_SECRET_ACCESS_KEY = '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'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'https://s3.amazonaws.com/quiickly/'
 
-STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
+STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = (
-    dirname(join(BASE_DIR, 'static')),
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
 )
 
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = dirname(join(BASE_DIR, 'media'))
+'''
 
+Media Files for production on Amazon Web Services S3
+
+'''
+MEDIA_URL = 'https://s3.amazonaws.com/quiickly/media/'
+MEDIAFILES_LOCATION = 'media'
+DEFAULT_FILE_STORAGE = 'quiickly.storages.MediaStorage'
