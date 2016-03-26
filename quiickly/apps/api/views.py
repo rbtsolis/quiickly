@@ -17,7 +17,7 @@ from apps.products.models import Product
 This is a function to get all details of the product
 
 '''
-@permission_classes((permissions.IsAuthenticated, ))
+#@permission_classes((permissions.IsAuthenticated, ))
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Product.objects.all()
