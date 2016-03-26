@@ -37,7 +37,8 @@ AWS_SECRET_ACCESS_KEY = 'UUCrxbj16qipvv1KjItM+3yxel7RqAg8MdZbBUOX'
 
 STATIC_URL = 'https://s3.amazonaws.com/quiickly/'
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
+print(STATIC_ROOT)
 
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
