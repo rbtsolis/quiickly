@@ -29,7 +29,7 @@ DATABASES = {
     }
 }
 
-
+NAME = 'ASD'
 
 '''
 
