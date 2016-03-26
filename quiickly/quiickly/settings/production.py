@@ -30,12 +30,12 @@ DATABASES = {
 Static files configurations on Amazon S3
 
 '''
-AWS_STORAGE_BUCKET_NAME = 'quiickly'
+AWS_STORAGE_BUCKET_NAME = 'upstudy'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJ6WKK6Q33RGKRYWA'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAITEOIGGQ5Z5TIATQ'
+AWS_SECRET_ACCESS_KEY = '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'
 
-STATIC_URL = 'https://s3.amazonaws.com/quiickly/'
+STATIC_URL = 'https://s3.amazonaws.com/upstudy/'
 
 STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
 print(STATIC_ROOT)
@@ -54,6 +54,6 @@ STATICFILES_FINDERS = (
 Media Files for production on Amazon Web Services S3
 
 '''
-MEDIA_URL = 'https://s3.amazonaws.com/quiickly/media/'
+MEDIA_URL = 'https://s3.amazonaws.com/upstudy/media/'
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'quiickly.storages.MediaStorage'
