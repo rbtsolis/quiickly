@@ -5,7 +5,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['quiickly.co','149.56.14.136']
 
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -15,16 +15,17 @@ DATABASES = {
         'PORT': '',
     }
 }
-
-
 '''
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': dirname(join(BASE_DIR, 'db.sqlite3')),
     }
 }
-'''
+
 
 
 '''
