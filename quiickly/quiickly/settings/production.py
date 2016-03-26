@@ -26,7 +26,9 @@ DATABASES = {
     }
 }
 
+DB_RBT = dirname(join(BASE_DIR, 'db.sqlite3'))
 
+print(DB_RBT)
 
 '''
 
