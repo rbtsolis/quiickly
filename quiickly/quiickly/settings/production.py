@@ -35,7 +35,7 @@ Static and media files configurations
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/static/'
+STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
 
 STATICFILES_DIRS = (
     dirname(join(BASE_DIR, 'static')),
