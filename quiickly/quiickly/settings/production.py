@@ -20,7 +20,7 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(BASE_DIR, 'db.sqlite3'),
+        'NAME': dirname(join(BASE_DIR, 'db.sqlite3')),
     }
 }
 
@@ -38,10 +38,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/static/'
 
 STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
+    dirname(join(BASE_DIR, 'static')),
 )
 
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = join(BASE_DIR, 'media')
+MEDIA_ROOT = dirname(join(BASE_DIR, 'media'))
 
