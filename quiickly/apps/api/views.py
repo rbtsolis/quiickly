@@ -5,11 +5,11 @@ This is an API of quickly team
 
 '''
 
-from django.http import HttpResponse
 from rest_framework.decorators import permission_classes
 from rest_framework import permissions, viewsets
 from apps.products.serializers import ProductSerializer
 from apps.products.models import Product
+
 
 
 '''
