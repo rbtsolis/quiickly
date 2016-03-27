@@ -60,3 +60,5 @@ Media Files for production on Amazon Web Services S3
 MEDIA_URL = 'https://s3.amazonaws.com/upstudy/media/'
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'quiickly.storages.MediaStorage'
+
+CORS_ORIGIN_ALLOW_ALL = True
