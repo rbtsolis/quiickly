@@ -1,0 +1,24 @@
+{% load staticfiles %}
+        <div class="masthead">
+            <div class="inner-header">
+              <!--<h3 class="masthead-brand">Quiickly</h3>-->
+
+                <a href="{% url 'web:ondemand_index' %}">
+
+                  <img src="{% static 'img/tienda.png' %}" style="display: inline-block; max-width:140px;" alt="" class="img-responsive img-logo">
+                </a>
+
+
+              <nav>
+                <ul class="nav masthead-nav">
+                {% if user.is_authenticated %}
+                  {% for m in menuWeb %}
+                    <li class="{% if m.active %}active {% endif %}"><a href="{{ m.link }}">{{ m.name }}</a></li>
+                  {% endfor %}
+                {% else %}
+                      <li class=""><a href="/login/?next=/tienda/">Iniciar sesión</a></li>
+                {% endif %}
+                </ul>
+              </nav>
+            </div>
+        </div>
