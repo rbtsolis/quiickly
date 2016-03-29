@@ -1,0 +1,37 @@
+<ion-view ng-init="cargarProductos()">
+    <ion-content>
+
+      <!-- Barra de busqueda dirección -->
+      <div class="bar-subheader">
+        <label class="item item-input">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="search" id="direccion_field" placeholder="Dirección">
+        </label>
+      </div>
+
+      <!-- Google Maps -->
+      <div id="map" data-tap-disabled="true"></div>
+
+      <!-- Slide productos -->
+      <ion-slide-box on-slide-changed="cargarInfo($index)">
+        <ion-slide ng-repeat="productos in Productos">
+          <img style="width: 30%" src="{{productos.image}}">
+        </ion-slide>
+      </ion-slide-box>
+
+      <!-- Información -->
+      <div id="contentInfo" class="row" ng-controller="MapCtrl">
+        <!--<button class="button button-stable " id="btnAgregar">Agregar</button>-->
+        <div class="col col-67 divPago button-bar">
+          <a id="efectivo" class="button icon-left ion-cash">Efectivo</a>
+          <a id="credit-card" class="button icon-left ion-card" ng-click="openModal()">T. Credito</a>
+        </div>
+        <div id="precio-nombre" class="col col-33"><p class="textPrecio">{{Info.name | uppercase}} ${{Info.price}} </p></div>
+      </div>
+
+      <!-- Boton enviar -->
+      <button class="button bar bar-footer button-full button-balanced">ENVÍAMELO YA!</button>
+
+    </ion-content>
+
+</ion-view>

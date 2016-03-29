@@ -1,0 +1,46 @@
+<ion-side-menus enable-menu-with-back-views="false">
+
+  <ion-side-menu-content>
+
+        <ion-nav-bar class="bar-light nav-title-slide-ios7">
+
+            <ion-nav-back-button>
+            </ion-nav-back-button>
+
+            <ion-nav-buttons side="left">
+                <button class="button button-icon button-clear" menu-toggle="left"><img src="img/menu.png"></button>
+            </ion-nav-buttons>
+            <ion-nav-buttons side="right">
+              <button class="button button-clear"><img src="img/canasta.png"></button>
+            </ion-nav-buttons>
+
+        </ion-nav-bar>
+
+        <ion-nav-view name="menuContent">
+          <ion-view title="<img class='title-image' src='../img/logo-purple.png' />" left-buttons="leftButtons" right-buttons="rightButtons" hide-back-button="true" class="bubble-background">
+        </ion-nav-view>
+
+    </ion-side-menu-content>
+
+    <ion-side-menu side="left">
+        <ion-content>
+            <ion-list>
+               <ion-item nav-clear menu-close href="#/app/mapa" class="item item-icon-left" >
+                    <i class="icon ion-ios7-ionic-outline"></i>Inicio
+                </ion-item>
+               <ion-item nav-clear menu-close href="#/map/direcciones" class="item item-icon-left" >
+                    <i class="icon ion-ios7-help"></i>Mis direcciones
+                </ion-item>
+                <ion-item nav-clear menu-close href="mailto:soporte@quiickly.co" class="item item-icon-left" >
+                     <i class="icon ion-ios7-help"></i>Soporte
+                 </ion-item>
+                 <ion-item nav-clear menu-close href="#/map/acerca" class="item item-icon-left" >
+                      <i class="icon ion-ios7-help"></i>Acerca
+                  </ion-item>
+                  <ion-item nav-clear menu-close href="salir()" class="item item-icon-left" >
+                       <i class="icon ion-ios7-help"></i>Salir
+                   </ion-item>
+						</ion-list>
+					</ion-content>
+	</ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,78 @@
+body {
+  font-family: 'Avenir Next' !important;
+}
+
+.slider {
+  height: 25%;
+  text-align: center;
+  background-color: #FFF;
+}
+
+.scroll {
+    height: 100%;
+}
+
+#map {
+    width: 100%;
+    height: 50%;
+}
+
+#contentInfo {
+  height: 10%;
+}
+
+#contentInfo a {
+  height: 100%;
+}
+
+#contentInfo div  {
+  height: 100%;
+
+}
+
+#precio-nombre {
+  background-color: #f2f2f2;
+}
+
+#contentInfo p {
+  text-align: center;
+  color: #6F6F6F;
+}
+
+#btnAgregar {
+  font-family: avenir next;
+  font-weight: 500;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  color: #673AB7;
+  text-decoration: underline;
+}
+
+.divPago a{
+  line-height: 3.5em;
+  background-color: #E8E4EA;
+}
+
+.divPago {
+  background-color: #E8E4EA;
+}
+
+#efectivo {
+  width: 50%;
+  font-size: 1em;
+  border-radius: none !important;
+  border-right: 1px solid #ccc;
+  float: left;
+}
+
+#credit-card {
+  width: 50%;
+  font-size: 0.94em;
+  border-radius: none !important;
+  float: right;
+}
+
+.selected-class-name {
+  background-color: #673AB7 !important;
+  color: #fff !important;
+}
