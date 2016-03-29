@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 from os.path import dirname, abspath, join
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = dirname(dirname(abspath(__file__)))
+BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 
 ADMINS = (
     ('Rafael Martinez', 'rafael.antonio.martinezs@gmail.com'),
@@ -43,6 +43,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'apps.products',
+    'apps.web',
 ]
 
 THIRD_PARTY_APPS = [
@@ -83,6 +84,10 @@ TEMPLATES = [
         },
     },
 ]
+
+templates_dir = join(BASE_DIR, 'templates')
+
+print(templates_dir)
 
 WSGI_APPLICATION = 'quiickly.wsgi.application'
 
