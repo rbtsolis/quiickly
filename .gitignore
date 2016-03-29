@@ -5,6 +5,9 @@ img_producto/
 *.py[cod]
 *$py.class
 
+# Sqlite3 extensions
+*.sqlite3
+
 # C extensions
 *.so
 
@@ -62,4 +65,3 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
-/quiickly/quiickly/db.sqlite3
