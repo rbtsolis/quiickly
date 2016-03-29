@@ -20,6 +20,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^su/', admin.site.urls),
     url(r'^api/v1/', include('apps.api.urls')),
+    url(r'^', include('apps.web.urls')),
 ]
 
 if settings.DEBUG or settings.DEBUG == False:
