@@ -20,6 +20,13 @@ ADMINS = (
     ('Roberth Quiickly', 'roberth@quiickly.co'),
 )
 
+# This is when the project have a broken or high error
+# See https://docs.djangoproject.com/en/1.9/ref/settings/#std:setting-MANAGERS
+MANAGERS = (
+    ('Roberth Solís', 'roberth.solis@gmail.com'),
+    ('Roberth Quiickly', 'roberth@quiickly.co'),
+)
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -57,6 +64,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -159,7 +167,7 @@ EMAIL_HOST_USER = 'postmaster@mg.script.com.co'
 EMAIL_HOST_PASSWORD = '6fd3925f846edea26cf220bff91db202'
 EMAIL_PORT = 587
 SUPPORT_EMAIL = 'soporte@quiickly.co'
-
+EMAIL_SUBJECT_PREFIX = '[Quiickly]'
 
 
 '''
