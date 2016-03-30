@@ -45,6 +45,7 @@ LOCAL_APPS = [
 THIRD_PARTY_APPS = [
     'social.apps.django_app.default',
     'rest_framework',
+    'corsheaders',
 ]
 
 # Application definition
@@ -168,3 +169,15 @@ Push Notifications Section
 PUSH_NOTIFICATIONS_SETTINGS = {
     "GCM_API_KEY": "AIzaSyA851MR_xbuFkKhRgCdh6R5lrl0H9MWfXk",
 }
+
+
+
+'''
+Django Cors Header Configuration Section
+
+'''
+CORS_URLS_REGEX = r'^/api/v1/.*$'
+
+CORS_ALLOW_METHODS = [
+    'GET',
+]
