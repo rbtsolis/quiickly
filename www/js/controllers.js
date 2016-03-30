@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('quiickly.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -49,12 +49,26 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('ProductoCtrl', function($scope, $ionicModal){
+
+})
+
 .controller('MapCtrl', function($scope, $http, $state, $cordovaGeolocation, $ionicModal) {
 
-  $scope.verifSe = function(tarjeta, efectivo){
-    $scope.selectedIndex = tarjeta;
+  $ionicModal.fromTemplateUrl('templates/producto.html', {
+    scope: $scope,
+    animation: 'slide-in-up',
+    focusFirstInput: true
+  }).then(function(modalProducto) {
+    $scope.modal = modalProducto
+  })
+
+  $scope.openProduct = function() {
+    $scope.modal.show()
   }
-  $ionicModal.fromTemplateUrl('templates/modal-credit-card.html', {
+
+
+  $ionicModal.fromTemplateUrl('templates/producto.html', {
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true
@@ -75,8 +89,8 @@ angular.module('starter.controllers', [])
   })
 
   // Productos
-  var urlProductos = 'http://149.56.14.136/api/v1/products/?format=json';
-  var urlPais = 'https://restcountries.eu/rest/v1/alpha/col';
+  var urlProductos = 'http://localhost:1337/quiickly.co/api/v1/products/?format=json';
+
   var json =
   [
      {
@@ -87,28 +101,38 @@ angular.module('starter.controllers', [])
         "stock":10,
         "state":"1",
         "price":8200.0,
-        "image":"https://upstudy.s3.amazonaws.com:443/media/img_producto/236941Preservativos-Durex-Extra-Seguro-3-Uds_o4TpNTY.png?Signature=pWNLYxfSN01VFZSwqZA4opY%2FAlI%3D&Expires=1459100072&AWSAccessKeyId=AKIAJC65GDXJ6RCHWX6A"
+        "image":"/img/extra-seguro.png"
      },
      {
         "id":2,
-        "name":"Ultra Sensitvo",
+        "name":"Sensitivo Delgado",
         "brand":1,
         "type":1,
         "stock":20,
         "state":"1",
         "price":10000.0,
-        "image":"https://upstudy.s3.amazonaws.com:443/media/img_producto/681939Preservativos-Durex-Placer-Prolongado-3-Uds.png?Signature=4p%2F4OHHLAlRTMAeEOlBsDMkF1vc%3D&Expires=1459100072&AWSAccessKeyId=AKIAJC65GDXJ6RCHWX6A"
+        "image":"/img/sensitivo-delgado.png"
+     },
+     {
+        "id":3,
+        "name":"Placer Prolongado",
+        "brand":1,
+        "type":1,
+        "stock":20,
+        "state":"1",
+        "price":11000.0,
+        "image":"/img/placer-prolongado.png"
      }
   ];
 
   $scope.cargarProductos = function(){
-    $scope.Productos = json;
-    $scope.Info = json [0];
-    /*$http.get(urlProductos).success(function(products){
+    //$scope.Productos = json;
+    //$scope.Info = json [0];
+    $http.get(urlProductos).success(function(products){
       console.log(products);
       $scope.Productos = products;
       $scope.Info = products[0];
-    })*/
+    })
   }
 
   $scope.cargarInfo = function($index){

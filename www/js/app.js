@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'starter.controllers', 'ngCordova'])
+var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'quiickly.controllers', 'quiickly.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -21,6 +21,12 @@ var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'starte
     }
   });
 })
+
+.filter('trustUrl', function ($sce) {
+  return function(url) {
+    return $sce.trustAsResourceUrl(url);
+  };
+});
 
 
 quiickly.config(function($stateProvider, $urlRouterProvider) {
@@ -49,6 +55,14 @@ quiickly.config(function($stateProvider, $urlRouterProvider) {
     views: {
       templateUrl: 'templates/modal-credit-card.html',
       controller: 'CreditCtrl'
+    }
+  })
+
+  .state('app.producto', {
+    url: '/producto',
+    views: {
+      templateUrl: 'templates/producto.html',
+      controller: 'ProductoCtrl'
     }
   })
 
