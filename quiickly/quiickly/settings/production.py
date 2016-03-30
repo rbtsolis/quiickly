@@ -4,7 +4,7 @@ from .base import *
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136']
 
 
 '''
@@ -60,7 +60,6 @@ AWS_SECRET_ACCESS_KEY = 'YVPGZrMkR1H6qc1NXM39ZmNRmtY73TH3AYYBl6ET'
 STATIC_URL = 'https://s3.amazonaws.com/upstudy/'
 
 STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
-print(STATIC_ROOT)
 
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
