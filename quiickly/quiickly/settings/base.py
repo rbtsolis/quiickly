@@ -14,15 +14,12 @@ from os.path import dirname, abspath, join
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 
+
 ADMINS = (
-    ('Rafael Martinez', 'rafael.antonio.martinezs@gmail.com'),
-    ('Rafael quiickly', 'rafaelmartinezs@quiickly.co'),
     ('Roberth Solís', 'roberth.solis@gmail.com'),
     ('Roberth Quiickly', 'roberth@quiickly.co'),
 )
 
-DEFAULT_FROM_EMAIL = 'soporte@quiickly.co'
-SERVER_EMAIL = 'soporte@quiickly.co'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -38,7 +35,6 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
 ]
 
 LOCAL_APPS = [
@@ -48,7 +44,7 @@ LOCAL_APPS = [
 
 THIRD_PARTY_APPS = [
     'social.apps.django_app.default',
-    'rest_framework'
+    'rest_framework',
 ]
 
 # Application definition
@@ -56,7 +52,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 
 MIDDLEWARE_CLASSES = [
-    #'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -85,9 +81,6 @@ TEMPLATES = [
     },
 ]
 
-templates_dir = join(BASE_DIR, 'templates')
-
-print(templates_dir)
 
 WSGI_APPLICATION = 'quiickly.wsgi.application'
 
@@ -111,12 +104,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-PUSH_NOTIFICATIONS_SETTINGS = {
-    "GCM_API_KEY": "AIzaSyA851MR_xbuFkKhRgCdh6R5lrl0H9MWfXk",
-    # "APNS_CERTIFICATE": "/path/to/your/certificate.pem",
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -130,30 +117,58 @@ USE_L10N = False
 
 USE_TZ = False
 
-THUMBNAIL_EXTENSION = 'png'  # Or any extn for your thumbnails
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        #'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    )
-
-}
-
 
 '''
 Auth configuraation
 
 '''
-
 #AUTH_USER_MODEL = 'users.User'
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+
+THUMBNAIL_EXTENSION = 'png'
+
+
+
+'''
+Django Rest Framework Configuration Section
+
+'''
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
+
+
+'''
+Email Configuration Section
+
+'''
+DEFAULT_FROM_EMAIL = 'soporte@quiickly.co'
+SERVER_EMAIL = 'soporte@quiickly.co'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@mg.script.com.co'
+EMAIL_HOST_PASSWORD = '6fd3925f846edea26cf220bff91db202'
+EMAIL_PORT = 587
+SUPPORT_EMAIL = 'soporte@quiickly.co'
+
+
+
+'''
+Push Notifications Section
+
+'''
+PUSH_NOTIFICATIONS_SETTINGS = {
+    "GCM_API_KEY": "AIzaSyA851MR_xbuFkKhRgCdh6R5lrl0H9MWfXk",
+}
+
+
+
+#CORS_ORIGIN_ALLOW_ALL = True
