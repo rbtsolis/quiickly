@@ -168,7 +168,3 @@ Push Notifications Section
 PUSH_NOTIFICATIONS_SETTINGS = {
     "GCM_API_KEY": "AIzaSyA851MR_xbuFkKhRgCdh6R5lrl0H9MWfXk",
 }
-
-
-
-#CORS_ORIGIN_ALLOW_ALL = True
