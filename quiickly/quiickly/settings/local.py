@@ -5,6 +5,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INSTALLED_APPS += (
+    'debug_toolbar.apps.DebugToolbarConfig',
+)
+
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -36,3 +40,10 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
+
+'''
+Thumbnail Configuration Section
+
+'''
+# Show thumbnail generation errors
+THUMBNAIL_DEBUG = True
