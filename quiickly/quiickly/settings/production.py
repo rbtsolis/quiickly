@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136']
 '''
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'quiickly2db',
         'USER': 'quiickly2',
         'PASSWORD': 'aistream',
@@ -27,24 +27,6 @@ DATABASES = {
         'NAME': join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
-'''
-Templates Configuration Section
-Cache the templates in memory for speed-up
-
-'''
-loaders = [
-    (
-        'django.template.loaders.cached.Loader',
-        [
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        ]
-    ),
-]
-
-TEMPLATES[0]['OPTIONS'].update({"loaders": loaders})
 
 
 '''
