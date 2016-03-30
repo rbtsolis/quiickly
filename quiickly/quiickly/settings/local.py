@@ -5,9 +5,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-INSTALLED_APPS += (
+INSTALLED_APPS += [
     'debug_toolbar.apps.DebugToolbarConfig',
-)
+]
 
 
 # Database
