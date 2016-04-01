@@ -16,11 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
+from apps.users.views import login_ajax, Logout
 
 urlpatterns = [
     url(r'^su/', admin.site.urls),
     url(r'^api/v1/', include('apps.api.urls')),
     url(r'^', include('apps.web.urls')),
+    url(r'^login/', login_ajax),
+    url(r'^logout/', Logout),
 ]
 
 if settings.DEBUG or settings.DEBUG == False:
