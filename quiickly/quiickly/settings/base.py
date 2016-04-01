@@ -45,6 +45,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.users',
     'apps.products',
     'apps.web',
 ]
@@ -128,10 +129,10 @@ USE_TZ = False
 
 
 '''
-Auth configuraation
+Auth Users Configuraation
 
 '''
-#AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.User'
 
 
 
