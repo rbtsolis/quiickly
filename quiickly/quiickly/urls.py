@@ -16,6 +16,8 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
+from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
+
 from apps.users.views import login_ajax, Logout
 
 urlpatterns = [
@@ -24,6 +26,10 @@ urlpatterns = [
     url(r'^', include('apps.web.urls')),
     url(r'^login/', login_ajax),
     url(r'^logout/', Logout),
+    url(r'^api/v1/tokens/refresh/$', refresh_jwt_token),
+    url(r'^api/v1/tokens/verify/$', verify_jwt_token),
+
+    url(r'^api/v1/tokens/create/$', obtain_jwt_token),
 ]
 
 if settings.DEBUG or settings.DEBUG == False:
