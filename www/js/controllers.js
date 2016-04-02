@@ -1,4 +1,4 @@
-angular.module('quiickly.controllers', [])
+angular.module('quiickly.controllers', ['ngOpenFB'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -13,7 +13,7 @@ angular.module('quiickly.controllers', [])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $ionicModal.fromTemplateUrl('templates/logiin.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
@@ -49,26 +49,105 @@ angular.module('quiickly.controllers', [])
 
 })
 
+.controller('ProfileCtrl', function ($scope, ngFB) {
+  ngFB.api({
+    path: '/me',
+    params: {fields: 'id, name, email'},
+  }).then(
+  function (data) {
+    console.log(data);
+    $scope.user = data;
+  },
+  function (error) {
+    alert('Facebook error: ' + error.error_description);
+  });
+})
+
+.controller('RegisterCtrl', function ($scope, $http) {
+  var urlRegistro = 'http://localhost:1337/quiickly.co/login/';
+
+  $scope.correoUsuario = 'userdemo@gmail.com';
+  $scope.contraUsuario = 'userdemo';
+
+  $scope.registro = function(){
+    $http({
+    url: urlRegistro,
+    method: "POST",
+    data: JSON.stringify({
+      email: $scope.correoUsuario,
+      password: $scope.contraUsuario
+    }),
+    headers: {'Content-Type': 'application/json'}
+    }).success(function (data, error, status, headers, config) {
+      console.log(data + " si funciono")
+    }).error(function (data, error, status, headers, config) {
+      console.log("no WORKS" + '' + error);
+    });
+  }
+})
+
+.controller('LoginCtrl', function($scope, $location, $state, $http, ngFB){
+
+  var urlLogear = 'http://localhost:1337/quiickly.co/api/v1/tokens/create/';
+
+  $scope.correoUsuario = 'userdemo@gmail.com';
+  $scope.contraUsuario = 'userdemo';
+
+  $scope.logear = function(){
+    $http({
+    url: urlLogear,
+    method: "POST",
+    data: JSON.stringify({
+      email:$scope.correoUsuario,
+      password:$scope.contraUsuario
+    }),
+    headers: {'Content-Type': 'application/json'}
+    }).success(function (data, error, status, headers, config) {
+      console.log(data + '' + " si funciono");
+      $state.go('app.map')
+    }).error(function (data, error, status, headers, config) {
+      console.log("no WORKS" + '' + error);
+    });
+  }
+
+  $scope.fbLogin = function () {
+    ngFB.login(function (response) {
+      if (response.status === 'connected') {
+        console.log('Facebook login succeeded');
+        $scope.closeLogin();
+      } else {
+        alert('Facebook login failed');
+      }
+    },
+    {scope: 'public_profile, email'});
+  }
+
+})
+
 .controller('ProductoCtrl', function($scope, $ionicModal){
 
 })
 
-.controller('MapCtrl', function($scope, $http, $state, $cordovaGeolocation, $ionicModal) {
+.controller('MapCtrl', function($scope, $http, $location, $state, $cordovaGeolocation, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('templates/producto.html', {
+  $scope.goTo = function() {
+    $state.go('app.login')
+  }
+
+  $ionicModal.fromTemplateUrl('templates/product-detail.html', {
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true
   }).then(function(modalProducto) {
-    $scope.modal = modalProducto
+    $scope.modlProducto = modalProducto
   })
 
   $scope.openProduct = function() {
-    $scope.modal.show()
+    $scope.modalProducto.show()
   }
 
 
-  $ionicModal.fromTemplateUrl('templates/producto.html', {
+  $ionicModal.fromTemplateUrl('templates/modal-credit-card.html', {
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true
@@ -129,13 +208,14 @@ angular.module('quiickly.controllers', [])
     //$scope.Productos = json;
     //$scope.Info = json [0];
     $http.get(urlProductos).success(function(products){
-      console.log(products);
       $scope.Productos = products;
       $scope.Info = products[0];
+      console.log(products[0]);
     })
   }
 
   $scope.cargarInfo = function($index){
+    console.log($index + "Este es el index")
     $scope.Info = json[$index];
     console.log($scope.Info);
   }

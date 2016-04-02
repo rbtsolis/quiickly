@@ -1,6 +1,6 @@
 <ion-view ng-init="cargarProductos()">
-    <ion-content>
 
+    <ion-content >
       <!-- Barra de busqueda dirección -->
       <div class="bar-subheader">
         <label class="item item-input">
@@ -13,14 +13,14 @@
       <div id="map" data-tap-disabled="true"></div>
 
       <!-- Slide productos -->
-      <ion-slide-box on-slide-changed="cargarInfo($index)">
+      <ion-slide-box ng-init="cargarInfo($index)" on-slide-changed="cargarInfo($index)">
         <ion-slide ng-repeat="producto in Productos">
           <img style="width: 30%" src="{{producto.image}}" ng-click="openProduct()">
         </ion-slide>
       </ion-slide-box>
 
       <!-- Información -->
-      <div id="contentInfo" class="row" ng-controller="MapCtrl">
+      <div id="contentInfo" class="row">
         <!--<button class="button button-stable " id="btnAgregar">Agregar</button>-->
         <div class="col col-67 divPago button-bar">
           <a id="efectivo" class="button icon-left ion-cash">Efectivo</a>
@@ -30,8 +30,6 @@
       </div>
 
       <!-- Boton enviar -->
-      <button class="button bar bar-footer button-full button-balanced">ENVÍAMELO YA!</button>
-
+      <button class="button bar bar-footer button-full button-balanced" ng-click="goTo()">ENVÍAMELO YA!</button>
     </ion-content>
-
 </ion-view>

@@ -1,0 +1,19 @@
+<ion-view title="Registro" ng-controller="RegisterCtrl">
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="email" ng-model="correoUsuario" placeholder="Correo Electrónico">
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="contraUsuario" placeholder="Contraseña">
+        </label>
+        <label class="item item-input">
+          <input type="tel" ng-model="telUsuario" placeholder="Número de Celular">
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="direccUsuario" placeholder="Dirección">
+        </label>
+        <button class="button bar bar-footer button-full button-balanced" ng-click="registro()">Registrarme</button>
+      </div>
+    </ion-content>
+</ion-view>

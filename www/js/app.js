@@ -4,12 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'quiickly.controllers', 'quiickly.services', 'ngCordova'])
+var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'quiickly.controllers', 'quiickly.services', 'ngCordova', 'ngOpenFB'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, ngFB) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    ngFB.init({appId: '1484517898520984'})
+
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
@@ -44,7 +46,7 @@ quiickly.config(function($stateProvider, $urlRouterProvider) {
     url: '/direcciones',
     views: {
       'menuContent': {
-        templateUrl: 'templates/direcciones.html',
+        templateUrl: 'templates/address.html',
         controller: 'DireCtrl'
       }
     }
@@ -61,8 +63,44 @@ quiickly.config(function($stateProvider, $urlRouterProvider) {
   .state('app.producto', {
     url: '/producto',
     views: {
-      templateUrl: 'templates/producto.html',
+      templateUrl: 'templates/product-detail.html',
       controller: 'ProductoCtrl'
+    }
+  })
+
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
+  })
+
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      }
+    }
+  })
+
+  .state('app.register', {
+    url: '/register',
+    views: {
+      templateUrl: 'templates/register.html',
+      controller: 'RegisterCtrl'
+    }
+  })
+
+  .state('app.inservice', {
+    url: '/inservice',
+    views: {
+      templateUrl: 'templates/inService.html',
+      controller: 'InServiceCtrl'
     }
   })
 

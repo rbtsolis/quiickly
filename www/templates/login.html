@@ -1,0 +1,18 @@
+<ion-view title="Login" ng-controller="LoginCtrl">
+    <ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" ng-model="correoUsuario" placeholder="Correo Electrónico">
+        </label>
+        <label class="item item-input">
+          <input type="password" ng-model="contraUsuario" placeholder="Contraseña">
+        </label>
+        <button class="button bar bar-footer button-full button-balanced" ng-click="logear()">Ingresar</button>
+        <label class="item">
+          <button class="button button-block button-positive" ng-click="fbLogin()">
+            Iniciar sesión con Facebook
+          </button>
+        </label>
+      </div>
+    </ion-content>
+</ion-view>
