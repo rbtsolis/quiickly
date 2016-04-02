@@ -17,7 +17,6 @@ def Logout(request):
 '''
     This is Login with AJAX, require: email and password
     first this function need authenticate and later login
-
 '''
 def login_ajax(request):
 
@@ -39,9 +38,7 @@ def login_ajax(request):
 
 
 '''
-
 This function is only execute when the user choose a custom picture
-
 '''
 def CreateUser(request):
 
