@@ -11,6 +11,3 @@ class UserSerializer(serializers.ModelSerializer):
             'name', 'email', 'avatar', 'phone', 'address'
         )
         depth = 1
-
-
-
