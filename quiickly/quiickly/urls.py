@@ -26,10 +26,9 @@ urlpatterns = [
     url(r'^', include('apps.web.urls')),
     url(r'^login/', login_ajax),
     url(r'^logout/', Logout),
+    url(r'^api/v1/tokens/create/$', obtain_jwt_token),
     url(r'^api/v1/tokens/refresh/$', refresh_jwt_token),
     url(r'^api/v1/tokens/verify/$', verify_jwt_token),
-
-    url(r'^api/v1/tokens/create/$', obtain_jwt_token),
 ]
 
 if settings.DEBUG or settings.DEBUG == False:
