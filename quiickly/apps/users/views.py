@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, Http404, JsonResponse
+from django.views.decorators.csrf import csrf_exemp
 
 
 def make_random_password(length=20,
@@ -18,6 +19,7 @@ def Logout(request):
     This is Login with AJAX, require: email and password
     first this function need authenticate and later login
 '''
+@csrf_exempt
 def login_ajax(request):
 
     if request.is_ajax():
