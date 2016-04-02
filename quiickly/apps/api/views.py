@@ -4,12 +4,10 @@
 This is an API of quickly team
 
 '''
-
 from rest_framework.decorators import permission_classes
 from rest_framework import permissions, viewsets
 from apps.products.serializers import ProductSerializer
 from apps.products.models import Product
-
 
 
 '''
@@ -22,3 +20,4 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
