@@ -6,6 +6,11 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
+
+from apps.users.models import User, Quiickler
+from apps.drugstores.models import BranchOffice
+
+
 DISTRIBUTION = (
     ('0', _('Aplicacion')),
     ('1', _('Web')),
@@ -113,3 +118,32 @@ class Type(models.Model):
 
     def __str__(self):
         return '%s' % self.type
+
+    class Meta:
+
+        db_table = 'types_products'
+
+'''
+
+This is a Model of Orders
+
+'''
+class Order(models.Model):
+
+    PAY_METHOD_CHOICES = (
+        ('0', _('Tarjeta de Crédito')),
+        ('1', _('Contrapedido')),
+    )
+
+    user          = models.ForeignKey(User, verbose_name=_('Usuario'))
+    address       = models.CharField(_('Dirección'), max_length=50)
+    branch_office = models.ForeignKey(BranchOffice, verbose_name=_('Sucursal'))
+    quiickler     = models.ForeignKey(Quiickler)
+    product       = models.ForeignKey('Product', verbose_name=_('Producto'))
+    latitude  = models.DecimalField(_('Latitud'), max_digits=20, decimal_places=5)
+    longitude = models.DecimalField(_('Longitud'), max_digits=20, decimal_places=5)
+    pay_method = models.CharField(_('Tipo de Pago'), choices=PAY_METHOD_CHOICES,max_length=25)
+
+    class Meta:
+
+        db_table = 'orders'
