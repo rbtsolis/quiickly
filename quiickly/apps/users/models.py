@@ -25,9 +25,7 @@ class UserManager(BaseUserManager):
                 True, **extra_fields)
 
 
-
 class User(AbstractBaseUser, PermissionsMixin):
-
 
     id          = models.AutoField(primary_key=True, unique=True, blank=False, null=False)
     username    = models.CharField(max_length=100, unique=True)
@@ -82,3 +80,13 @@ class Address(models.Model):
 
     class Meta:
         db_table = 'address'
+
+
+class Quiickler(models.Model):
+
+    user          = models.ForeignKey('User')
+    license_plate = models.CharField(_('Placa'), max_length=50)
+
+    class Meta:
+
+        db_table = 'quiicklers'
