@@ -21,6 +21,6 @@ def decode_token(token):
     try:
         payload_decode = decode(token, settings.SECRET_KEY, algorithms=['HS512'])
     except:
-        payload_decode = "This token has expired"
+        payload_decode = False
 
     return payload_decode
