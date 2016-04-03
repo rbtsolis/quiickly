@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Drugstore
+
+
+@admin.register(Drugstore)
+class DrugstoreAdmin(admin.ModelAdmin):
+    pass
