@@ -4,7 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'quiickly.controllers', 'quiickly.services', 'ngCordova', 'ngOpenFB'])
+var quiickly = angular.module('quiickly', [
+  'ionic',
+  'ionic.service.core',
+  'quiickly.controllers',
+  'quiickly.services',
+  'ngCordova',
+  'ngOpenFB'
+ ])
 
 .run(function($ionicPlatform, ngFB) {
   $ionicPlatform.ready(function() {
@@ -24,12 +31,6 @@ var quiickly = angular.module('quiickly', ['ionic','ionic.service.core', 'quiick
   });
 })
 
-.filter('trustUrl', function ($sce) {
-  return function(url) {
-    return $sce.trustAsResourceUrl(url);
-  };
-});
-
 
 quiickly.config(function($stateProvider, $urlRouterProvider) {
 
@@ -42,29 +43,39 @@ quiickly.config(function($stateProvider, $urlRouterProvider) {
     controller: 'MenuCtrl'
   })
 
-  .state('app.direcciones', {
-    url: '/direcciones',
+  .state('app.address', {
+    url: '/address',
     views: {
       'menuContent': {
         templateUrl: 'templates/address.html',
-        controller: 'DireCtrl'
+        controller: 'AddrCtrl'
       }
     }
   })
 
-  .state('app.modal-credito', {
-    url: '/modal-credito',
+  .state('app.about', {
+    url: '/about',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/about.html',
+        controller: 'AboutCtrl'
+      }
+    }
+  })
+
+  .state('app.modal-credit', {
+    url: '/modal-credit',
     views: {
       templateUrl: 'templates/modal-credit-card.html',
       controller: 'CreditCtrl'
     }
   })
 
-  .state('app.producto', {
-    url: '/producto',
+  .state('app.product', {
+    url: '/product',
     views: {
       templateUrl: 'templates/product-detail.html',
-      controller: 'ProductoCtrl'
+      controller: 'ProductCtrl'
     }
   })
 
@@ -91,16 +102,20 @@ quiickly.config(function($stateProvider, $urlRouterProvider) {
   .state('app.register', {
     url: '/register',
     views: {
-      templateUrl: 'templates/register.html',
-      controller: 'RegisterCtrl'
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
+      }
     }
   })
 
   .state('app.inservice', {
     url: '/inservice',
     views: {
-      templateUrl: 'templates/inService.html',
-      controller: 'InServiceCtrl'
+      'menuContent': {
+        templateUrl: 'templates/inService.html',
+        controller: 'InServiceCtrl'
+      }
     }
   })
 

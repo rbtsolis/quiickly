@@ -8,103 +8,114 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
   // listen for the $ionicView.enter event:
   //$scope.$on('$ionicView.enter', function(e) {
   //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/logiin.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
 })
 
-.controller('MenuCtrl', function($scope) {
+.controller('MenuCtrl', function($scope, $state) {
+  $scope.goToV = function(inicio, perfil){
+    console.log(inicio);
+    if (inicio === "inicio") {
+      $state.go('app.map');
+    }else{
+      $state.go('app.profile');
+    }
+  }
 
 })
 
-.controller('CreditCtrl', function($scope, $ionicModal){
+.controller('AddrCtrl', function($scope, $state){
+  $scope.addressNew = "";
+  $scope.nameAddress = "";
+
+  direcciones = [
+    {
+      addressNew: "Calle 22 #5-56, Cali",
+      nameAddress: "Casa Buitrera"
+    },
+    {
+      addressNew: "Calle la escopeta",
+      nameAddress: "Oficina Quiickly"
+    }
+  ]
+
+  $scope.registerAddress = function(){
+    //$scope.addressNew.set(direcciones[0]);
+    //$scope.nameAddress.set(direcciones[0]);
+    console.log(direcciones[0]);
+    $scope.addressUser = direcciones[0];
+    console.log(direcciones)
+  }
+
 
 })
 
-.controller('ProfileCtrl', function ($scope, ngFB) {
-  ngFB.api({
-    path: '/me',
-    params: {fields: 'id, name, email'},
-  }).then(
-  function (data) {
-    console.log(data);
-    $scope.user = data;
-  },
-  function (error) {
-    alert('Facebook error: ' + error.error_description);
-  });
+.controller('CreditCtrl', function($scope, $ionicModal){})
+
+.controller('AboutCtrl', function($scope, $state, $ionicSideMenuDelegate){
+  $ionicSideMenuDelegate.canDragContent(false)
+
+  $scope.salirAbout = function (){
+      $state.go('app.map');
+  }
+
 })
 
-.controller('RegisterCtrl', function ($scope, $http) {
-  var urlRegistro = 'http://localhost:1337/quiickly.co/login/';
+.controller('RegisterCtrl', function ($scope, $ionicSideMenuDelegate, $state, $http) {
+  $ionicSideMenuDelegate.canDragContent(false)
 
-  $scope.correoUsuario = 'userdemo@gmail.com';
-  $scope.contraUsuario = 'userdemo';
+  $scope.salirRegistro = function (){
+      $state.go('app.map');
+  }
 
-  $scope.registro = function(){
+  var urlRegister = 'http://localhost:1337/quiickly.co/login/';
+
+  $scope.register = function(){
     $http({
-    url: urlRegistro,
+    url: urlRegister,
     method: "POST",
     data: JSON.stringify({
-      email: $scope.correoUsuario,
-      password: $scope.contraUsuario
+      email: $scope.emailUser,
+      password: $scope.passUser,
+      telefono: $scope.telUser,
+      direccion: $scope.addressUser
     }),
     headers: {'Content-Type': 'application/json'}
     }).success(function (data, error, status, headers, config) {
-      console.log(data + " si funciono")
+      console.log(data + " its works")
     }).error(function (data, error, status, headers, config) {
-      console.log("no WORKS" + '' + error);
+      console.log("Its sucks" + ' ' + error);
     });
   }
+
 })
 
-.controller('LoginCtrl', function($scope, $location, $state, $http, ngFB){
+.controller('LoginCtrl', function($scope, $location, $state, $http, $ionicSideMenuDelegate, $ionicViewSwitcher, ngFB){
+  $ionicSideMenuDelegate.canDragContent(false)
+  //$ionicViewSwitcher.nextDirection('exit');
+  $scope.salirLogin = function (){
+      $state.go('app.map');
+  }
 
-  var urlLogear = 'http://localhost:1337/quiickly.co/api/v1/tokens/create/';
+  var urlLogin = 'http://localhost:1337/quiickly.co/api/v1/tokens/create/';
 
-  $scope.correoUsuario = 'userdemo@gmail.com';
-  $scope.contraUsuario = 'userdemo';
+  $scope.emailUser = 'userdemo@gmail.com';
+  $scope.passUser = 'userdemo';
 
-  $scope.logear = function(){
+  $scope.login = function(){
     $http({
-    url: urlLogear,
+    url: urlLogin,
     method: "POST",
     data: JSON.stringify({
-      email:$scope.correoUsuario,
-      password:$scope.contraUsuario
+      email:$scope.emailUser,
+      password:$scope.passUser
     }),
     headers: {'Content-Type': 'application/json'}
     }).success(function (data, error, status, headers, config) {
-      console.log(data + '' + " si funciono");
-      $state.go('app.map')
+      console.log(data.token)
+      $scope.dataUser = data;
+      $scope.tokenUser = data.token;
+      $scope.Loged = false;
+      $scope.statusFB = false;
+      $state.go('app.inservice')
     }).error(function (data, error, status, headers, config) {
       console.log("no WORKS" + '' + error);
     });
@@ -114,6 +125,7 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
     ngFB.login(function (response) {
       if (response.status === 'connected') {
         console.log('Facebook login succeeded');
+        $scope.statusFB = true;
         $scope.closeLogin();
       } else {
         alert('Facebook login failed');
@@ -122,29 +134,86 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
     {scope: 'public_profile, email'});
   }
 
+  $scope.goToRegister = function(){
+    $state.go('app.register')
+  }
 })
 
-.controller('ProductoCtrl', function($scope, $ionicModal){
+.controller('ProfileCtrl', function ($scope, ngFB) {
 
+  $scope.verifTUser = function(){
+    if ($scope.statusFB == true) {
+      ngFB.api({
+        path: '/me',
+        params: {fields: 'id, name, email'},
+      }).then(
+      function (data) {
+        console.log(data);
+        $scope.user = data;
+        $scope.urlImage = 'http://graph.facebook.com/'+$scope.user.id+'/picture?width=270&height=270';
+      },
+      function (error) {
+        alert('Facebook error: ' + error.error_description);
+      });
+    }else {
+      datas = [
+        {
+          name: "Miguel Rengifo",
+          email: "m@quiickly.co"
+        }
+      ]
+      $scope.user = datas[0];
+      console.log($scope.user)
+      $scope.urlImage = 'img/pp.jpg';
+    }
+  }
 })
+
+.controller('ProductCtrl', function($scope, $ionicModal){})
+
+.controller('InServiceCtrl', function($scope){})
 
 .controller('MapCtrl', function($scope, $http, $location, $state, $cordovaGeolocation, $ionicModal) {
 
+  var urlOrder = 'http://localhost:1337quiickly.co/api/v1/orders/?format=json'
+
+  $scope.order = function(){
+    $http({
+    url: urlOrder,
+    method: "POST",
+    data: JSON.stringify({
+      address: $scope.dataAddress,
+      latitude: $scope.latOrder,
+      longitude: $scope.lngOrder,
+      pay_method: 1,
+      user: $scope.mailUser,
+      branch_office: 1,
+      quiickler: $scope.mailUser,
+      product: 1
+    }),
+    headers: {'Content-Type': 'application/json'}
+    }).success(function (response, error, status, headers, config) {
+      console.log(response)
+      $state.go('app.inservice')
+    }).error(function (data, error, status, headers, config) {
+      console.log("no funciona" + '' + error);
+    });
+  }
+
+
   $scope.goTo = function() {
-    $state.go('app.login')
+    if($scope.Loged == true) {
+      console.log($scope.Loged)
+      $state.go('app.inservice')
+    }else {
+      $state.go('app.login')
+    }
   }
 
-  $ionicModal.fromTemplateUrl('templates/product-detail.html', {
-    scope: $scope,
-    animation: 'slide-in-up',
-    focusFirstInput: true
-  }).then(function(modalProducto) {
-    $scope.modlProducto = modalProducto
-  })
-
-  $scope.openProduct = function() {
-    $scope.modalProducto.show()
+  $scope.goToProduct = function() {
+    $state.go('app.product')
   }
+
 
 
   $ionicModal.fromTemplateUrl('templates/modal-credit-card.html', {
@@ -168,56 +237,22 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
   })
 
   // Productos
-  var urlProductos = 'http://localhost:1337/quiickly.co/api/v1/products/?format=json';
+  var urlProducts = 'http://localhost:1337/quiickly.co/api/v1/products/?format=json';
 
-  var json =
-  [
-     {
-        "id":1,
-        "name":"Extra Seguro",
-        "brand":1,
-        "type":1,
-        "stock":10,
-        "state":"1",
-        "price":8200.0,
-        "image":"/img/extra-seguro.png"
-     },
-     {
-        "id":2,
-        "name":"Sensitivo Delgado",
-        "brand":1,
-        "type":1,
-        "stock":20,
-        "state":"1",
-        "price":10000.0,
-        "image":"/img/sensitivo-delgado.png"
-     },
-     {
-        "id":3,
-        "name":"Placer Prolongado",
-        "brand":1,
-        "type":1,
-        "stock":20,
-        "state":"1",
-        "price":11000.0,
-        "image":"/img/placer-prolongado.png"
-     }
-  ];
-
-  $scope.cargarProductos = function(){
+  $scope.loadProducts = function(){
     //$scope.Productos = json;
     //$scope.Info = json [0];
-    $http.get(urlProductos).success(function(products){
-      $scope.Productos = products;
-      $scope.Info = products[0];
+    $http.get(urlProducts).success(function(products){
+      $scope.Products = products;
+      $scope.InfoProduct = products[0];
       console.log(products[0]);
     })
   }
 
-  $scope.cargarInfo = function($index){
+  $scope.loadInfoProduct = function($index){
     console.log($index + "Este es el index")
-    $scope.Info = json[$index];
-    console.log($scope.Info);
+    $scope.InfoProduct = json[$index];
+    console.log($scope.InfoProduct);
   }
 
   // Slide de productos
@@ -267,14 +302,18 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       map: $scope.map,
       animation: google.maps.Animation.DROP,
       position: $scope.map.getCenter(),
-      icon: '../img/punto-central.png'
+      icon: '../img/central-point.png'
     });
+
+
+
 
     //infoWnd.open($scope.map, $scope.marker);
     function geopasar(map, geocoder){
       $scope.geocoder.geocode({'location': $scope.map.getCenter()}, function(results) {
         console.log(results[0].formatted_address);
         document.getElementById("direccion_field").value = results[0].formatted_address;
+        $scope.dataAddress = document.getElementsById("direccion_field").value;
       })
     };
 
@@ -283,6 +322,9 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
         //marker.setContent($scope.map.getCenter().toUrlValue());
         $scope.marker.setPosition($scope.map.getCenter());
         //marker.open($scope.map);
+        $scope.latOrder = $scope.marker.getPosition().lat();
+        $scope.lngOrder = $scope.marker.getPosition().lng();
+        console.log($scope.ubicationMap);
         geopasar($scope.geocoder, $scope.map);
       });
 

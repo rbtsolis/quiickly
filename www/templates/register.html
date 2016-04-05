@@ -1,19 +1,59 @@
-<ion-view title="Registro" ng-controller="RegisterCtrl">
-    <ion-content>
-      <div class="list list-inset">
-        <label class="item item-input">
-          <input type="email" ng-model="correoUsuario" placeholder="Correo Electrónico">
-        </label>
-        <label class="item item-input">
-          <input type="password" ng-model="contraUsuario" placeholder="Contraseña">
-        </label>
-        <label class="item item-input">
-          <input type="tel" ng-model="telUsuario" placeholder="Número de Celular">
-        </label>
-        <label class="item item-input">
-          <input type="text" ng-model="direccUsuario" placeholder="Dirección">
-        </label>
-        <button class="button bar bar-footer button-full button-balanced" ng-click="registro()">Registrarme</button>
+<ion-view hide-nav-bar="true">
+  <ion-content>
+    <div class="list contentRegistro">
+      <div class="row row-center">
+        <div class="col col-33">
+        </div>
+        <div class="col col-33 col-offset-33" id="btnCloseLogin">
+          <a ng-click="salirRegistro()"><img src="img/close.png"></a>
+        </div>
       </div>
-    </ion-content>
+      <div class="row row-center" id="contentLogoR">
+        <img src="img/logo.png" />
+      </div>
+      <br>
+      <br>
+      <div class="row">
+        <label class="col col-center item item-input item-stacked-label">
+          <span class="input-label">CORREO</span>
+          <input type="text" ng-model="emailUser" placeholder="Correo Electrónico">
+        </label>
+      </div>
+      <div class="row">
+        <label class="col col-center item item-input item-stacked-label">
+          <span class="input-label">CONTRASEÑA</span>
+          <input type="password" ng-model="passUser" placeholder="Contraseña">
+        </label>
+      </div>
+      <div class="row">
+        <label class="col col-center item item-input item-stacked-label">
+          <span class="input-label">NÚMERO CELULAR</span>
+          <input type="tel" ng-model="telUser" placeholder="Número">
+        </label>
+      </div>
+      <div class="row">
+        <label class="col col-center item item-input item-stacked-label">
+          <span class="input-label">DIRECCIÓN</span>
+          <input type="text" ng-model="addressUser" placeholder="Dirección Favorita">
+        </label>
+      </div>
+      <div class="row" id="btnAddress">
+        <div class="col">
+          <button class="button button-block button-royal">Mi Casa</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-royal">Ni Novia/o</button>
+        </div>
+        <div class="col">
+          <button class="button button-block button-royal">Mi Amiga/o</button>
+        </div>
+      </div>
+      <div class="row">
+        <button id="btnRegistro" class="button button-block button-royal" ng-click="register()">Registrarme</button>
+      </div>
+      <div class="row">
+        <label id="terminos">Al registrarme acepto los<a href=""> terminos & condiciones</a></label>
+      </div>
+    </div>
+  </ion-content>
 </ion-view>

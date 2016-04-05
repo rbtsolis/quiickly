@@ -1,13 +1,7 @@
-<ion-view title="Login">
-    <ion-content>
-      <div class="list list-inset">
-        <label class="item item-input">
-          <input type="text" ng-model="correoUsuario" placeholder="Correo Electrónico">
-        </label>
-        <label class="item item-input">
-          <input type="password" ng-model="contraUsuario" placeholder="Contraseña">
-        </label>
-        <button class="button bar bar-footer button-full button-balanced" ng-click="">ENVÍAMELO YA!</button>
+<ion-view title="En Servicio">
+    <ion-content ng-repeat="info in dataUser">
+      <label>here</label>
+        <p>User token: {{info.token}}</p>
       </div>
     </ion-content>
 </ion-view>

@@ -76,3 +76,194 @@ body {
   background-color: #673AB7 !important;
   color: #fff !important;
 }
+
+#loginView {
+  background-image: url('../img/background-login.png');
+  background-size: cover;
+}
+
+#loginView div {
+  margin: 0 auto;
+}
+
+.contentLogin {
+  background-color: rgba(255, 0, 0, 0) !important;
+}
+
+.contentLogin input {
+  background: transparent none repeat scroll 0% 0%;
+  color: #fff;
+  border-radius: none;
+  font-family: avenir next;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.59);
+}
+
+.contentLogin .row {
+  width: 90%;
+}
+
+.contentLogin label {
+  border: none;
+}
+
+.contentLogin span {
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#btnIngresar {
+  background-color: #C96ED8;
+  color: #fff;
+  font-family: avenir next;
+  font-size: 1.2em;
+}
+
+#btnFB {
+  background-color: #25479B;
+  font-family: avenir next;
+}
+
+.img-logo {
+  width: 40%;
+}
+
+.withoutBar {
+  background: none !important;
+}
+
+#contentLogo img{
+  /*position:absolute;*/
+  left: 0;
+  right: 0;
+  margin:0 auto;
+  top:50%;
+  transform:translateY(16%);
+}
+
+.legendLogo label {
+  width: 55%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.legendLogo label span{
+  font-size: 1.1em;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#aRegistro {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: underline;
+}
+
+#aRegistro:active {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#btnCloseLogin a img{
+  float: right;
+}
+
+.item-complex .item-content, .item-radio .item-content {
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+}
+
+.menuItem {
+  border: none;
+}
+
+.menu .scroll-content {
+  background: url('/img/wall.png');
+  background-size: cover;
+}
+
+#listMenu .item {
+  background-color: rgba(255, 255, 255, 0);
+}
+
+
+.contentRegistro input {
+  background: transparent none repeat scroll 0% 0%;
+  color: #673AB7;
+  border-radius: none;
+  font-family: avenir next;
+  border-bottom: 2px solid RGBA(144, 19, 254, 0.27);
+}
+
+.contentRegistro .row {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.contentRegistro label {
+  border: none;
+}
+
+.contentRegistro span {
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  opacity: 0.69;
+  color: #673AB7;
+}
+
+#btnAddress button{
+  font-size: 0.9em;
+  font-family: avenir next;
+  background-color: #C96ED8;
+  height: 30px !important;
+}
+
+#btnRegistro {
+  font-family: avenir next;
+  font-size: 1.2em;
+}
+
+#terminos {
+  color: #B3B3B3;
+}
+
+#terminos a {
+  color: #B3B3B3
+}
+
+.legendLogoR label span{
+  font-size: 1.1em;
+  font-weight: 400;
+  color: #673AB7;
+}
+
+#contentLogoR img{
+  /*position:absolute;*/
+  left: 0;
+  right: 0;
+  margin:0 auto;
+  top:50%;
+  width: 45%;
+  transform:translateY(16%);
+}
+
+#listMenu a {
+  font-size: 1.1em;
+}
+
+#AboutView {
+  background: url('/img/wall.png');
+  background-size: cover;
+}
+
+.contentAbout{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.contentAbout p {
+  text-align: center;
+}
+
+.contentAbout span {
+  text-align: center;
+}

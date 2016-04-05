@@ -1,5 +1,5 @@
 
-  <div class="modal" ng-controller="ProductoCtrl">
+    <div class="modal" ng-controller="ProductCtrl">
     <ion-header-bar>
       <ion-nav-bar class="bar-light nav-title-slide-ios7">
 
@@ -9,9 +9,7 @@
           <ion-nav-buttons side="left">
               <button class="button button-icon button-clear" menu-toggle="left"><img src="img/menu.png"></button>
           </ion-nav-buttons>
-          <ion-nav-buttons side="right">
-            <button class="button button-clear"><img src="img/canasta.png"></button>
-          </ion-nav-buttons>
+
 
       </ion-nav-bar>
 
@@ -21,9 +19,9 @@
     </ion-header-bar>
     <ion-content>
       <ion-slide-box on-slide-changed="cargarInfo($index)">
-        <ion-slide ng-repeat="productos in Productos">
-          <img style="width: 30%" src="{{productos.image}}">
-          <p>{{Info.name | uppercase}} ${{Info.price}} </p>
+        <ion-slide ng-repeat="product in Products">
+          <img style="width: 30%" src="{{product.image}}">
+          <p>{{InfoProduct.name | uppercase}} ${{InfoProduct.price}} </p>
         </ion-slide>
       </ion-slide-box>
     </ion-content>

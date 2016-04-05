@@ -1,18 +1,42 @@
-<ion-view title="Login" ng-controller="LoginCtrl">
-    <ion-content>
-      <div class="list list-inset">
-        <label class="item item-input">
-          <input type="text" ng-model="correoUsuario" placeholder="Correo Electrónico">
-        </label>
-        <label class="item item-input">
-          <input type="password" ng-model="contraUsuario" placeholder="Contraseña">
-        </label>
-        <button class="button bar bar-footer button-full button-balanced" ng-click="logear()">Ingresar</button>
-        <label class="item">
-          <button class="button button-block button-positive" ng-click="fbLogin()">
-            Iniciar sesión con Facebook
-          </button>
-        </label>
+<ion-view ng-controller="LoginCtrl" hide-nav-bar="true">
+
+    <ion-content id="loginView">
+      <br>
+      <div class="row row-center">
+        <div class="col col-33">
+          <a ng-click="goToRegister()" id="aRegistro">Regístrate Gratis</a>
+        </div>
+        <div class="col col-33 col-offset-33" id="btnCloseLogin">
+          <a ng-click="salirLogin()"><img src="img/close-white.png"></a>
+        </div>
+      </div>
+      <br>
+      <div class="row row-center" id="contentLogo">
+        <img src="img/logoblanco.png" />
+      </div>
+      <br>
+      <div class="row legendLogo">
+        <label><span>Condones cuando más los necesitas</span></label>
+      </div>
+      <div class="list contentLogin">
+        <div class="row">
+          <label class="col col-center item item-input item-stacked-label">
+            <span class="input-label">CORREO</span>
+            <input type="text" ng-model="emailUser" placeholder="Correo Electrónico">
+          </label>
+        </div>
+        <div class="row">
+          <label class="col col-center item item-input item-stacked-label">
+            <span class="input-label">CONTRASEÑA</span>
+            <input type="password" ng-model="passUser" placeholder="Contraseña">
+          </label>
+        </div>
+        <div class="row">
+          <button class="button button-block button-balanced" id="btnIngresar" ng-click="login()">Ingresar</button>
+        </div>
+        <div class="row row-bottom">
+          <button class="button button-block button-positive  icon-left ion-social-facebook" id="btnFB" ng-click="fbLogin()">Iniciar sesión con Facebook</button>
+        </div>
       </div>
     </ion-content>
 </ion-view>

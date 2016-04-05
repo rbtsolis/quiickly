@@ -1,5 +1,5 @@
-<ion-view ng-init="cargarProductos()">
-
+<ion-view ng-init="loadProducts()">
+  
     <ion-content >
       <!-- Barra de busqueda dirección -->
       <div class="bar-subheader">
@@ -13,9 +13,9 @@
       <div id="map" data-tap-disabled="true"></div>
 
       <!-- Slide productos -->
-      <ion-slide-box ng-init="cargarInfo($index)" on-slide-changed="cargarInfo($index)">
-        <ion-slide ng-repeat="producto in Productos">
-          <img style="width: 30%" src="{{producto.image}}" ng-click="openProduct()">
+      <ion-slide-box ng-init="loadProducts($index)" on-slide-changed="loadProducts($index)">
+        <ion-slide ng-repeat="product in Products">
+          <img style="width: 30%" src="{{product.image}}" ng-click="openProduct()">
         </ion-slide>
       </ion-slide-box>
 
@@ -26,7 +26,7 @@
           <a id="efectivo" class="button icon-left ion-cash">Efectivo</a>
           <a id="credit-card" class="button icon-left ion-card" ng-click="openModal()">T. Credito</a>
         </div>
-        <div id="precio-nombre" class="col col-33"><p class="textPrecio">{{Info.name}} ${{Info.price}} </p></div>
+        <div id="precio-nombre" class="col col-33"><p class="textPrecio">{{InfoProduct.name}} ${{InfoProduct.price}} </p></div>
       </div>
 
       <!-- Boton enviar -->
