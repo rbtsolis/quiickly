@@ -1,7 +1,25 @@
-<ion-view title="En Servicio">
-    <ion-content ng-repeat="info in dataUser">
-      <label>here</label>
-        <p>User token: {{info.token}}</p>
+<ion-view title="En Servicio" ng-init="InServiceCtrl()">
+    <ion-content id="headerCall">
+      <div class="bar-subheader">
+        <a id="btnCall" href="tel:{{dataQ.tel}}" class="button button-full button-stable "><i class="icon icon-left ion-ios-telephone"></i>LLAMAR AL QUIICKLER</a>
       </div>
+      <div id="mapService" data-tap-disabled="true" ng-init="loadInfoQ()"></div>
+      <div class="row row-bottom" id="InfoService">
+        <div class="col col-25">
+          <img src="{{dataQ.image}}" style="width: 60%;">
+        </div>
+        <div class="col">
+          <ul>
+            <li>{{dataQ.name}}</li>
+            <li>{{dataQ.plate}}</li>
+            <li>{{dataQ.product}}</li>
+            <li>{{dataQ.total}}</li>
+          </ul>
+        </div>
+        <div class="col col-25">
+          <span>20 MINUTOS</span>
+        </div>
+      </div>
+      <button id="btnCancelar" class="button bar bar-footer button-full button-assertive" ng-click="">CANCELAR</button>
     </ion-content>
 </ion-view>

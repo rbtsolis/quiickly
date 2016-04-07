@@ -1,5 +1,5 @@
 <ion-view ng-init="loadProducts()">
-  
+
     <ion-content >
       <!-- Barra de busqueda dirección -->
       <div class="bar-subheader">
@@ -20,10 +20,10 @@
       </ion-slide-box>
 
       <!-- Información -->
-      <div id="contentInfo" class="row">
+      <div id="contentInfo" class="row ">
         <!--<button class="button button-stable " id="btnAgregar">Agregar</button>-->
         <div class="col col-67 divPago button-bar">
-          <a id="efectivo" class="button icon-left ion-cash">Efectivo</a>
+          <a id="efectivo" class="button icon-left ion-cash" ng-class="classPago" ng-click="changeClass()">Efectivo</a>
           <a id="credit-card" class="button icon-left ion-card" ng-click="openModal()">T. Credito</a>
         </div>
         <div id="precio-nombre" class="col col-33"><p class="textPrecio">{{InfoProduct.name}} ${{InfoProduct.price}} </p></div>

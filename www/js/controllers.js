@@ -1,4 +1,4 @@
-angular.module('quiickly.controllers', ['ngOpenFB'])
+angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -10,7 +10,7 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
   //});
 })
 
-.controller('MenuCtrl', function($scope, $state) {
+.controller('MenuCtrl', function($scope, $state, serviceProduct) {
   $scope.goToV = function(inicio, perfil){
     console.log(inicio);
     if (inicio === "inicio") {
@@ -19,6 +19,11 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       $state.go('app.profile');
     }
   }
+
+  serviceProduct.getProducts()
+  .then(function(data){
+    $scope.menuNombre = data[0];
+  })
 
 })
 
@@ -48,7 +53,11 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
 
 })
 
-.controller('CreditCtrl', function($scope, $ionicModal){})
+.controller('CreditCtrl', function($scope, $ionicModal, $ionicPopup){
+  $scope.saveCC = function(){
+     popupCredit.close();
+  }
+})
 
 .controller('AboutCtrl', function($scope, $state, $ionicSideMenuDelegate){
   $ionicSideMenuDelegate.canDragContent(false)
@@ -88,7 +97,7 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
 
 })
 
-.controller('LoginCtrl', function($scope, $location, $state, $http, $ionicSideMenuDelegate, $ionicViewSwitcher, ngFB){
+.controller('LoginCtrl', function($scope, $location, $state, $http, $ionicSideMenuDelegate, $ionicViewSwitcher, ngFB, StorageProfile){
   $ionicSideMenuDelegate.canDragContent(false)
   //$ionicViewSwitcher.nextDirection('exit');
   $scope.salirLogin = function (){
@@ -113,7 +122,7 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       console.log(data.token)
       $scope.dataUser = data;
       $scope.tokenUser = data.token;
-      $scope.Loged = false;
+      $scope.Loged = true;
       $scope.statusFB = false;
       $state.go('app.inservice')
     }).error(function (data, error, status, headers, config) {
@@ -126,6 +135,7 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       if (response.status === 'connected') {
         console.log('Facebook login succeeded');
         $scope.statusFB = true;
+        $scope.Loged = false;
         $scope.closeLogin();
       } else {
         alert('Facebook login failed');
@@ -139,10 +149,10 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
   }
 })
 
-.controller('ProfileCtrl', function ($scope, ngFB) {
+.controller('ProfileCtrl', function ($scope, ngFB, StorageProfile) {
 
   $scope.verifTUser = function(){
-    if ($scope.statusFB == true) {
+
       ngFB.api({
         path: '/me',
         params: {fields: 'id, name, email'},
@@ -150,13 +160,15 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       function (data) {
         console.log(data);
         $scope.user = data;
+        StorageProfile.add($scope.user);
         $scope.urlImage = 'http://graph.facebook.com/'+$scope.user.id+'/picture?width=270&height=270';
+        StorageProfile.add($scope.urlImage)
       },
       function (error) {
         alert('Facebook error: ' + error.error_description);
-      });
-    }else {
-      datas = [
+      })
+
+      /*datas = [
         {
           name: "Miguel Rengifo",
           email: "m@quiickly.co"
@@ -164,16 +176,106 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
       ]
       $scope.user = datas[0];
       console.log($scope.user)
-      $scope.urlImage = 'img/pp.jpg';
+      $scope.urlImage = 'img/pp.jpg';*/
     }
-  }
-})
+  })
 
 .controller('ProductCtrl', function($scope, $ionicModal){})
 
-.controller('InServiceCtrl', function($scope){})
+.controller('InServiceCtrl', function($scope, $location, $cordovaGeolocation, StorageUbication){
+  quiickler =
+  [
+    {
+      name: "Antonio Delgado",
+      plate: "PLP-469",
+      tel: "3057507225",
+      image: "https://photo.isu.pub/miguelrengifo1/photo_large.jpg",
+      latitude: 3.384606,
+      longitude: -76.527920,
+      product: "Extra Seguro",
+      total: "$ 12.000"
+    }
+  ]
 
-.controller('MapCtrl', function($scope, $http, $location, $state, $cordovaGeolocation, $ionicModal) {
+  $scope.loadInfoQ = function(){
+    $scope.dataQ = quiickler [0];
+    /*$http.get(urlProducts).success(function(products){
+      $scope.Products = products;
+      $scope.InfoProduct = products[0];
+      console.log(products[0]);
+    })*/
+  }
+
+  // Google Maps
+  var options = {timeout: 10000, enableHighAccuracy: true};
+  $cordovaGeolocation.getCurrentPosition(options).then(function(position){
+
+      $scope.latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      $scope.positionQ = {
+        lat: $scope.dataQ.latitude,
+        lng: $scope.dataQ.longitude
+      }
+
+      $scope.latUser = StorageUbication.getPen();
+      $scope.lngUser = StorageUbication.getLast();
+
+      $scope.positionUser = {
+        lat: $scope.latUser,
+        lng: $scope.lngUser
+      }
+
+      console.log($scope.positionUser);
+
+      var styles = [
+        {
+          stylers: [
+            { hue: "#673AB7" },
+            { saturation: -10 }
+          ]
+        }
+      ];
+
+      var styledMap = new google.maps.StyledMapType(styles,
+      {name: "Styled Map"});
+
+      var mapOptions = {
+        center: $scope.positionQ,
+        zoom: 15,
+        disableDefaultUI: false,
+        mapTypeControlOptions: {
+          mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+        }
+      };
+
+      $scope.mapService = "";
+
+      $scope.mapService = new google.maps.Map(document.getElementById("mapService"), mapOptions);
+      $scope.mapService.setZoom(17);
+      $scope.mapService.mapTypes.set('map_style', styledMap);
+      $scope.mapService.setMapTypeId('map_style');
+
+      $scope.markerUser = new google.maps.Marker({
+        map: $scope.mapService,
+        animation: google.maps.Animation.DROP,
+        position: $scope.positionUser,
+        icon: '../img/punto.png'
+      });
+
+      $scope.markerQuiickler = new google.maps.Marker({
+        map: $scope.mapService,
+        animation: google.maps.Animation.DROP,
+        position: $scope.positionQ,
+        icon: '../img/quiickler.png'
+      });
+
+    }, function(error){
+    console.log("Could not get location");
+  })
+
+
+})
+
+.controller('MapCtrl', function($scope, $http, $location, $state, $cordovaGeolocation, $ionicModal, StorageUbication, serviceProduct, $ionicPopup, $timeout) {
 
   var urlOrder = 'http://localhost:1337quiickly.co/api/v1/orders/?format=json'
 
@@ -193,28 +295,55 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
     }),
     headers: {'Content-Type': 'application/json'}
     }).success(function (response, error, status, headers, config) {
-      console.log(response)
       $state.go('app.inservice')
     }).error(function (data, error, status, headers, config) {
       console.log("no funciona" + '' + error);
     });
   }
 
-
   $scope.goTo = function() {
+    StorageUbication.add($scope.latOrder);
+    StorageUbication.add($scope.lngOrder);
+
     if($scope.Loged == true) {
-      console.log($scope.Loged)
       $state.go('app.inservice')
     }else {
-      $state.go('app.login')
+      var popupLogin = $ionicPopup.show({
+        title: 'NO ESTAS REGISTRADO',
+        cssClass: 'modalLog',
+        subTitle: 'Aún no estas registrado o has iniciado sesión, selecciona una opción para continuar',
+        scope: $scope,
+        buttons: [
+          {
+            text: 'REGISTRARME',
+            onTap: function() {
+            $state.go('app.register');
+          }},{
+            text: 'INICIAR SESIÓN',
+            onTap: function() {
+              $state.go('app.login');
+            }
+          }
+        ]
+      })
+    $timeout(function() {
+       popupLogin.close();
+    }, 700000);
+   }
+  }
+
+  $scope.classPago = "active";
+  $scope.changeClassP = function(){
+     if ($scope.class === "active"){
+       $scope.class = "inactive";
+     }else{
+       $scope.class = "active";
     }
   }
 
   $scope.goToProduct = function() {
     $state.go('app.product')
   }
-
-
 
   $ionicModal.fromTemplateUrl('templates/modal-credit-card.html', {
     scope: $scope,
@@ -225,34 +354,39 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
   })
 
   $scope.openModal = function() {
-    $scope.modal.show()
+    var popupCredit = $ionicPopup.show({
+      cssClass: 'modalCredit',
+      templateUrl: 'templates/modal-credit-card.html',
+      scope: $scope,
+      buttons: [
+        {
+          text: 'REGISTRARME',
+          onTap: function() {
+          $state.go('app.register');
+        }},{
+          text: 'INICIAR SESIÓN',
+          onTap: function() {
+            $state.go('app.login');
+          }
+        }
+      ]
+    })
+
   }
 
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  })
-
-  // Productos
-  var urlProducts = 'http://localhost:1337/quiickly.co/api/v1/products/?format=json';
-
-  $scope.loadProducts = function(){
-    //$scope.Productos = json;
-    //$scope.Info = json [0];
-    $http.get(urlProducts).success(function(products){
+  serviceProduct
+    .getProducts()
+    .then(function(products){
       $scope.Products = products;
       $scope.InfoProduct = products[0];
-      console.log(products[0]);
+    }).catch(function(err) {
+      console.log('No se ha podido obtener los productos')
     })
-  }
+
+
 
   $scope.loadInfoProduct = function($index){
-    console.log($index + "Este es el index")
     $scope.InfoProduct = json[$index];
-    console.log($scope.InfoProduct);
   }
 
   // Slide de productos
@@ -306,14 +440,10 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
     });
 
 
-
-
     //infoWnd.open($scope.map, $scope.marker);
     function geopasar(map, geocoder){
       $scope.geocoder.geocode({'location': $scope.map.getCenter()}, function(results) {
-        console.log(results[0].formatted_address);
         document.getElementById("direccion_field").value = results[0].formatted_address;
-        $scope.dataAddress = document.getElementsById("direccion_field").value;
       })
     };
 
@@ -324,7 +454,6 @@ angular.module('quiickly.controllers', ['ngOpenFB'])
         //marker.open($scope.map);
         $scope.latOrder = $scope.marker.getPosition().lat();
         $scope.lngOrder = $scope.marker.getPosition().lng();
-        console.log($scope.ubicationMap);
         geopasar($scope.geocoder, $scope.map);
       });
 
