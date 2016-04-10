@@ -15,6 +15,7 @@ from apps.products.models import Product, Order
 This is a function to get all details of the product
 
 '''
+@permission_classes((permissions.IsAuthenticated, ))
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Product.objects.all()
@@ -25,7 +26,7 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
         return super(ProductViewSet, self).list(request, *args, **kwargs)
 
 
-#@permission_classes((permissions.IsAuthenticated, ))
+@permission_classes((permissions.IsAuthenticated, ))
 class OrderViewSet(viewsets.ModelViewSet):
 
     queryset = Order.objects.all()
