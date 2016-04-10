@@ -2,7 +2,6 @@ from django.conf.urls import url, include
 from rest_framework import routers
 from .views import ProductViewSet, OrderViewSet
 from .tokens import obtain_auth_token
-from rest_framework_jwt.views import obtain_jwt_token
 
 router = routers.SimpleRouter()
 router.register(r'products', ProductViewSet)
