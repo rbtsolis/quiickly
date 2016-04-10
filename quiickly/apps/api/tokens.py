@@ -1,26 +1,34 @@
-from jwt import encode, decode
-from django.conf import settings
+from rest_framework import parsers, renderers
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
+
+
 from apps.users.serializers import UserSerializer
 
 
-def jwt_response_payload_handler(token, user=None, request=None):
-    return {
-        'token': token,
-        'user': UserSerializer(user).data
-    }
+@api_view(['POST'])
+def obtain_auth_token(request):
+    """
+    API View that receives a POST with a user's username and password.
+
+    Returns a JSON Web Token that can be used for authenticated requests.
+    """
+
+    throttle_classes = ()
+    permission_classes = ()
+    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    serializer_class = AuthTokenSerializer
 
 
-def create_token(payload):
-
-    token   = encode(payload, settings.SECRET_KEY, algorithm='HS512')
-
-
-
-def decode_token(token):
-
-    try:
-        payload_decode = decode(token, settings.SECRET_KEY, algorithms=['HS512'])
-    except:
-        payload_decode = False
-
-    return payload_decode
+    serializer = serializer_class(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    user = serializer.validated_data['user']
+    token, created = Token.objects.get_or_create(user=user)
+    return Response(
+        {'token': token.key, 'user': UserSerializer(user).data},
+        status=status.HTTP_201_CREATED)
