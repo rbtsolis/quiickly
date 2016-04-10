@@ -20,6 +20,10 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def list(self, request, *args, **kwargs):
+        print(request.user)
+        return super(ProductViewSet, self).list(request, *args, **kwargs)
+
 
 #@permission_classes((permissions.IsAuthenticated, ))
 class OrderViewSet(viewsets.ModelViewSet):
