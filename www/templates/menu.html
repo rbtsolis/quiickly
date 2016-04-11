@@ -4,7 +4,7 @@
 
     <ion-nav-bar class="bar-light nav-title-slide-ios7">
       <ion-nav-buttons side="left">
-        <button class="button button-icon button-clear" menu-toggle="left"><img src="img/menu.png"></button>
+        <button id="btnMenu" class="button button-icon ion-navicon button-clear" menu-toggle="left"></button>
       </ion-nav-buttons>
     </ion-nav-bar>
 
@@ -15,16 +15,13 @@
   </ion-side-menu-content>
 
     <ion-side-menu side="left">
-      <ion-content>
+      <ion-content class="has-footerMenu">
         <ion-list id="listMenu">
           <br>
           <br>
           <br>
           <ion-item nav-clear menu-close ng-href="#/app/map" class="item item-icon-left menuItem" >
             <i class="icon ion-ios7-ionic-outline"></i>Inicio
-          </ion-item>
-          <ion-item nav-clear menu-close ng-href="#/app/profile" ng-click="verifTUser()" class="item item-icon-left menuItem">
-            <i class="icon ion-ios7-ionic-outline"></i>Perfil
           </ion-item>
           <ion-item nav-clear menu-close href="#/app/address" class="item item-icon-left menuItem" >
             <i class="icon ion-ios7-help"></i>Mis direcciones
@@ -35,16 +32,24 @@
           <ion-item nav-clear menu-close href="#/app/about" class="item item-icon-left menuItem" >
             <i class="icon ion-ios7-help"></i>Acerca
           </ion-item>
-          <ion-item nav-clear menu-close ng-click="logout()" ng-show="isLoggedIn()" class="item item-icon-left menuItem" >
+          <ion-item nav-clear menu-close href="#/app/about" class="item item-icon-left menuItem" >
             <i class="icon ion-ios7-help"></i>Salir
-           </ion-item>
-           <div class="item item-avatar">
-             <img src="mcfly.jpg">
-             <h2>{{menuNombre.name}}</h2>
-             <p>{{user.id}}</p>
-           </div>
+          </ion-item>
+
+          <br>
+          <br>
+          <br>
+          <br>
 		    </ion-list>
 	    </ion-content>
+      <ion-footer-bar class="bar-profile">
+        <a nav-clear menu-close href="#/app/profile"><div class="item item-avatar perfilMenu" ng-init="infoMenu()" ng-click="verifTUser()">
+          <img src="{{urlImage}}">
+          <h2>{{user.name}}</h2>
+          <p>{{user.id}}</p>
+        </div></a>
+      </ion-footer-bar>
+
     </ion-side-menu>
 
 </ion-side-menus>

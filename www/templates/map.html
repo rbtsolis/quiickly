@@ -1,9 +1,8 @@
-<ion-view ng-init="loadProducts()">
-
-    <ion-content >
+<ion-view>
+    <ion-content id="contentMap" ng-init="loadProducts($index)">
       <!-- Barra de busqueda dirección -->
       <div class="bar-subheader">
-        <label class="item item-input">
+        <label class="item item-input contentAddress">
           <i class="icon ion-search placeholder-icon"></i>
           <input type="search" id="direccion_field" placeholder="Dirección">
         </label>
@@ -13,9 +12,9 @@
       <div id="map" data-tap-disabled="true"></div>
 
       <!-- Slide productos -->
-      <ion-slide-box ng-init="loadProducts($index)" on-slide-changed="loadProducts($index)">
-        <ion-slide ng-repeat="product in Products">
-          <img style="width: 30%" src="{{product.image}}" ng-click="openProduct()">
+      <ion-slide-box on-slide-changed="slideChanged(index)">
+        <ion-slide ng-init="onDeleteClick()" ng-repeat="product in Products">
+          <img style="width: 30%" src="{{product.image}}" ng-click="openProduct()">          
         </ion-slide>
       </ion-slide-box>
 
@@ -29,7 +28,8 @@
         <div id="precio-nombre" class="col col-33"><p class="textPrecio">{{InfoProduct.name}} ${{InfoProduct.price}} </p></div>
       </div>
 
-      <!-- Boton enviar -->
-      <button class="button bar bar-footer button-full button-balanced" ng-click="goTo()">ENVÍAMELO YA!</button>
     </ion-content>
+    <ion-footer-bar class="footer-bar-custom">
+        <a ng-click="goTo()" class="footer-bar-item item-center button button-balanced" nav-direction="back">ENVÍAMELO YA!</a>
+    </ion-footer-bar>
 </ion-view>

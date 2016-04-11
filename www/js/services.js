@@ -70,11 +70,13 @@ angular.module('quiickly.services', ['ngStorage'])
     };
 })
 
-.service('serviceProduct', function ($http, $q) {
+.factory('serviceProduct', function ($http, $q) {
   var urlProducts= 'http://localhost:1337/quiickly.co/api/v1/products/?format=json';
+  var urlOrder = ''
 
   return {
-    getProducts: getProducts
+    getProducts: getProducts,
+    postOrder: postOrder
   }
 
   function getProducts (){
@@ -89,4 +91,108 @@ angular.module('quiickly.services', ['ngStorage'])
       })
     return promise;
   }
-});
+
+  function postOrder (){
+    // POST de orden
+
+    $http({
+      url: urlOrder,
+      method: "POST",
+      data: JSON.stringify({
+        address: $scope.dataAddress,
+        latitude: $scope.latOrder,
+        longitude: $scope.lngOrder,
+        pay_method: 1,
+        user: $scope.mailUser,
+        branch_office: 1,
+        quiickler: $scope.mailUser,
+        product: 1
+      }),
+      headers: {'Content-Type': 'application/json', 'Authorization': 'Token 8c3444e5f1718201985db0fb5cb4af1366208886'}
+      }).success(function (response, error, status, headers, config) {
+        $state.go('app.inservice')
+      }).error(function (data, error, status, headers, config) {
+        console.log("no funciona" + '' + error);
+      });
+  }
+})
+
+.factory('serviceLoginRegister', function ($$http, $q){
+  var urlLogin = ''
+  var urlRegister = ''
+
+  return {
+    postLogin: postLogin,
+    postRegister: postRegister
+  }
+
+  function postLogin (){
+
+  }
+
+  function postRegister (){
+
+  }
+})
+
+.factory('serviceUser', function ($http, $q){
+  var urlAddress = 'http://localhost:1337/www.mocky.io/v2/5708278d13000010007237a6'
+  var urlProfile = ''
+
+  return {
+    getAddress: getAddress,
+    postAddress: postAddress,
+    getProfile: getProfile,
+    postCreditCard: postCreditCard,
+    postPromoCode: postPromoCode
+  }
+
+  function getAddress (){
+    var defered = $q.defer()
+    var promise = defered.promise;
+
+    $http.get(urlAddress)
+      .success(function(addresses){
+        defered.resolve(addresses);
+      }).error(function(err){
+        //console.log(addresses);
+        defered.reject(err)
+      })
+    return promise;
+  }
+
+  function postAddress (){
+
+  }
+
+  function getProfile (){
+
+  }
+
+  function postCreditCard (){
+
+  }
+
+  function postPromoCode (){
+
+  }
+
+})
+
+.factory('InService', function ($$http, $q){
+  var urlService = ''
+
+  return {
+    getInfoService: getInfoService,
+    postCancel: postCancel
+  }
+
+  function getInfoService (){
+
+  }
+
+  function postCancel (){
+
+  }
+
+})

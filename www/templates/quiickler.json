@@ -1,0 +1,16 @@
+addresses = [
+  {
+    name: "Casa tia",
+    address: "Calle 22 #5-56",
+    latitude: 3.384606,
+    longitude: -76.527920,
+    primary: false
+  },
+  {
+    name: "Casa tia",
+    address: "Calle 22 #5-56",
+    latitude: 3.384690,
+    longitude: -76.527420,
+    primary: true
+  }
+]

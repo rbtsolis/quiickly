@@ -10,7 +10,7 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
   //});
 })
 
-.controller('MenuCtrl', function($scope, $state, serviceProduct) {
+.controller('MenuCtrl', function($scope, $state, serviceProduct, ngFB) {
   $scope.goToV = function(inicio, perfil){
     console.log(inicio);
     if (inicio === "inicio") {
@@ -20,36 +20,37 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
     }
   }
 
-  serviceProduct.getProducts()
-  .then(function(data){
-    $scope.menuNombre = data[0];
-  })
+  $scope.infoMenu = function(){
+    ngFB.api({
+      path: '/me',
+      params: {fields: 'id, name, email'},
+    }).then(
+    function (data) {
+      console.log(data);
+      $scope.user = data;
+      //StorageProfile.add($scope.user);
+      $scope.urlImage = 'http://graph.facebook.com/'+$scope.user.id+'/picture?width=270&height=270';
+      //StorageProfile.add($scope.urlImage)
+    },
+    function (error) {
+      alert('Facebook error: ' + error.error_description);
+    })
+  }
 
 })
 
-.controller('AddrCtrl', function($scope, $state){
+.controller('AddrCtrl', function($scope, $state, serviceUser){
   $scope.addressNew = "";
   $scope.nameAddress = "";
 
-  direcciones = [
-    {
-      addressNew: "Calle 22 #5-56, Cali",
-      nameAddress: "Casa Buitrera"
-    },
-    {
-      addressNew: "Calle la escopeta",
-      nameAddress: "Oficina Quiickly"
-    }
-  ]
-
-  $scope.registerAddress = function(){
-    //$scope.addressNew.set(direcciones[0]);
-    //$scope.nameAddress.set(direcciones[0]);
-    console.log(direcciones[0]);
-    $scope.addressUser = direcciones[0];
-    console.log(direcciones)
-  }
-
+  serviceUser
+    .getAddress()
+    .then(function(addresses){
+      $scope.Addresses = addresses;
+      console.log($scope.Addresses)
+    }).catch(function(err) {
+      console.log('No se ha podido obtener las direcciones')
+    })
 
 })
 
@@ -151,38 +152,29 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
 
 .controller('ProfileCtrl', function ($scope, ngFB, StorageProfile) {
 
+  // Verifica que tipo de usuario es (fb, regular)
   $scope.verifTUser = function(){
-
-      ngFB.api({
-        path: '/me',
-        params: {fields: 'id, name, email'},
-      }).then(
-      function (data) {
-        console.log(data);
-        $scope.user = data;
-        StorageProfile.add($scope.user);
-        $scope.urlImage = 'http://graph.facebook.com/'+$scope.user.id+'/picture?width=270&height=270';
-        StorageProfile.add($scope.urlImage)
-      },
-      function (error) {
-        alert('Facebook error: ' + error.error_description);
-      })
-
-      /*datas = [
-        {
-          name: "Miguel Rengifo",
-          email: "m@quiickly.co"
-        }
-      ]
-      $scope.user = datas[0];
-      console.log($scope.user)
-      $scope.urlImage = 'img/pp.jpg';*/
-    }
-  })
+    ngFB.api({
+      path: '/me',
+      params: {fields: 'id, name, email'},
+    }).then(
+    function (data) {
+      console.log(data);
+      $scope.user = data;
+      StorageProfile.add($scope.user);
+      $scope.urlImage = 'http://graph.facebook.com/'+$scope.user.id+'/picture?width=270&height=270';
+      StorageProfile.add($scope.urlImage)
+    },
+    function (error) {
+      alert('Facebook error: ' + error.error_description);
+    })
+  }
+})
 
 .controller('ProductCtrl', function($scope, $ionicModal){})
 
-.controller('InServiceCtrl', function($scope, $location, $cordovaGeolocation, StorageUbication){
+.controller('InServiceCtrl', function($scope, $location, $cordovaGeolocation, StorageUbication, $ionicSideMenuDelegate){
+  $ionicSideMenuDelegate.canDragContent(false)
   quiickler =
   [
     {
@@ -198,7 +190,7 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
   ]
 
   $scope.loadInfoQ = function(){
-    $scope.dataQ = quiickler [0];
+    $scope.dataQ = quiickler[0];
     /*$http.get(urlProducts).success(function(products){
       $scope.Products = products;
       $scope.InfoProduct = products[0];
@@ -275,31 +267,11 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
 
 })
 
-.controller('MapCtrl', function($scope, $http, $location, $state, $cordovaGeolocation, $ionicModal, StorageUbication, serviceProduct, $ionicPopup, $timeout) {
+.controller('MapCtrl', function($scope, $http, $location, $state, $ionicSideMenuDelegate, $ionicSlideBoxDelegate, $cordovaGeolocation, $ionicModal, StorageUbication, serviceProduct, $ionicPopup, $timeout) {
+  $ionicSideMenuDelegate.canDragContent(false)
+
 
   var urlOrder = 'http://localhost:1337quiickly.co/api/v1/orders/?format=json'
-
-  $scope.order = function(){
-    $http({
-    url: urlOrder,
-    method: "POST",
-    data: JSON.stringify({
-      address: $scope.dataAddress,
-      latitude: $scope.latOrder,
-      longitude: $scope.lngOrder,
-      pay_method: 1,
-      user: $scope.mailUser,
-      branch_office: 1,
-      quiickler: $scope.mailUser,
-      product: 1
-    }),
-    headers: {'Content-Type': 'application/json'}
-    }).success(function (response, error, status, headers, config) {
-      $state.go('app.inservice')
-    }).error(function (data, error, status, headers, config) {
-      console.log("no funciona" + '' + error);
-    });
-  }
 
   $scope.goTo = function() {
     StorageUbication.add($scope.latOrder);
@@ -345,49 +317,49 @@ angular.module('quiickly.controllers', ['ngOpenFB', 'ngStorage'])
     $state.go('app.product')
   }
 
-  $ionicModal.fromTemplateUrl('templates/modal-credit-card.html', {
-    scope: $scope,
-    animation: 'slide-in-up',
-    focusFirstInput: true
-  }).then(function(modal) {
-    $scope.modal = modal
-  })
-
   $scope.openModal = function() {
     var popupCredit = $ionicPopup.show({
+      title: 'AGREGAR TARJETA DE CRÉDITO',
       cssClass: 'modalCredit',
-      templateUrl: 'templates/modal-credit-card.html',
+      template: '<div class="list"><p>No te preocupes por tu información, contamos con el respaldo de TPaga (de los creadores de Tappsi). Tu información no sera revelada a terceros.</p><label class="item item-input"><input type="text" ng-model="credit.name" placeholder="Nombre"></label><label class="item item-input"><input type="text" ng-model="credit.lastName" placeholder="Apellido"></label><label class="item item-input"><input type="number" ng-model="credit.cardNumber" placeholder="Número de Tarjeta"></label><div class="row"><div class="col col-67"><label class="item item-input"><input type="date" ng-model="credit.expireDate" placeholder="Fecha de Expiración"></label></div><div class="col col-33"><label class="item item-input"><input type="number" ng-model="credit.CVV" placeholder="CVV"></label></div></div></div>',
       scope: $scope,
       buttons: [
         {
-          text: 'REGISTRARME',
+          text: 'CANCELAR',
           onTap: function() {
-          $state.go('app.register');
+          popupCredit.close();
         }},{
-          text: 'INICIAR SESIÓN',
+          text: 'GUARDAR',
           onTap: function() {
-            $state.go('app.login');
+          popupCredit.close();
           }
         }
       ]
     })
-
   }
 
-  serviceProduct
-    .getProducts()
-    .then(function(products){
-      $scope.Products = products;
-      $scope.InfoProduct = products[0];
-    }).catch(function(err) {
-      console.log('No se ha podido obtener los productos')
-    })
+    serviceProduct
+      .getProducts()
+      .then(function(products){
+        $scope.Products = products;
+        $scope.InfoProduct = products[0];
+      }).catch(function(err) {
+        console.log('No se ha podido obtener los productos')
+      })
 
+      $scope.onDeleteClick = function() {
+        //$ionicSlideBoxDelegate.next();
 
+       $timeout(function(){
+        //$scope.InfoProduct.splice($ionicSlideBoxDelegate.currentIndex(), 1);
+        $ionicSlideBoxDelegate.update();
+       },200);
+      };
 
-  $scope.loadInfoProduct = function($index){
-    $scope.InfoProduct = json[$index];
-  }
+      $scope.slideChanged= function(index){
+        $ionicSlideBoxDelegate.update();
+        $scope.InfoProduct = $scope.Products[index];
+      }
 
   // Slide de productos
   var options = {timeout: 10000, enableHighAccuracy: true};

@@ -14,11 +14,11 @@ body {
 
 #map {
     width: 100%;
-    height: 50%;
+    height: 57%;
 }
 
 #contentInfo {
-  height: 10%;
+  height: auto;
 }
 
 #contentInfo a {
@@ -348,14 +348,128 @@ body {
   color: #6B6B76;
 }
 
+.modalCredit p{
+  font-family: avenir next;
+  font-size: 1em;
+  color: #6B6B76;
+  text-align: center;
+  font-weight: normal;
+}
+
+.modalCredit label input {
+  font-family: avenir next;
+}
+
 .modalCredit h3 {
   font-size: 1.2em;
-  padding-bottom: 5%;
   padding-top: 4%;
   font-family: avenir next;
   color: rgb(103, 58, 183);
+  width: 67%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.modalCredit button {
+    background-color: #fff;
+    font-size: 0.97em;
+}
+
+.modalCredit button:last-child {
+    color: rgb(103, 58, 183);    
+}
+
+.modalCredit button:first-child {
+  border-right: 1px solid #CDCDD3;
 }
 
 #viewProfile {
-  background: url('../img/wall.png')
+  background: url('../img/wall.png');
+  background-size: cover;
+}
+
+.contentAddress {
+  background-color: rgba(103, 58, 183, 0.91);
+}
+
+.contentAddress input {
+  color: #fff;
+  font-family: avenir next;
+}
+
+.contentAddress i{
+  color: #fff;
+}
+
+.title-image {
+  margin-top: 6px;
+}
+
+#btnMenu {
+  color: #673AB7;
+}
+
+.perfilMenu {
+  border: none;
+  background-color: rgb(246, 246, 246) !important;
+}
+
+.perfilMenu h2{
+  color: #673AB7;
+  text-decoration: underline;
+  font-family: avenir next;
+}
+
+.perfilMenu p{
+  color: #673AB7;
+  text-decoration: none !important;
+  font-family: avenir next;
+}
+
+.bar-profile {
+  height: 77px;
+}
+
+.has-footerMenu {
+  bottom: 73px;
+}
+
+.bar-profile {
+  background-color: rgb(246, 246, 246) !important;
+}
+
+
+/**
+ * ion-footer-bar custom styles
+ */
+.footer-bar-custom {
+    background: #33cd5f;
+    color: #F6F7F0;
+    height: 44px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    z-index: 5
+  }
+
+.footer-bar-custom .item-center{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2em;
+    font-weight: 500;
+    font-family: avenir next;
+    line-height: 38px;
+}
+
+.footer-bar-custom .item-center {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%)
+}
+
+.contentMap .has-footer{
+  bottom: 0px;
 }

@@ -16,7 +16,7 @@ var quiickly = angular.module('quiickly', [
 
 .run(function($ionicPlatform, ngFB) {
   $ionicPlatform.ready(function() {
-    
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     ngFB.init({appId: '1484517898520984'})

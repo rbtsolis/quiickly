@@ -1,9 +1,9 @@
-<ion-view title="En Servicio" ng-init="InServiceCtrl()">
+<ion-view ng-init="InServiceCtrl()">
     <ion-content id="headerCall">
       <div class="bar-subheader">
         <a id="btnCall" href="tel:{{dataQ.tel}}" class="button button-full button-stable "><i class="icon icon-left ion-ios-telephone"></i>LLAMAR AL QUIICKLER</a>
       </div>
-      <div id="mapService" data-tap-disabled="true" ng-init="loadInfoQ()"></div>
+      <div id="mapService" data-tap-disabled="true"></div>
       <div class="row row-bottom" id="InfoService">
         <div class="col col-25">
           <img src="{{dataQ.image}}" style="width: 60%;">

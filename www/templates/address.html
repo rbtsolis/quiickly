@@ -1,4 +1,4 @@
-<ion-view view-title="Direcciones" ng-init="registerAddress()">
+<ion-view ng-init="registerAddress()">
   <ion-content>
     <div class="list list-inset">
       <label class="item item-input">
@@ -8,8 +8,13 @@
         <input type="text" ng-model="nameAdreess" placeholder="Nombre">
       </label>
       <button class="button button-block button-royal" ng-click="registerAddress()">Registrarme</button>
-      <ul ng-repeat="address in addressUser">
-        <li>{{address.addressNew}}{{address.nameAddress}}</li>
-      </ul>
+    </div>
+    <div class="row row-center">
+      <div class="col">
+        <ul ng-repeat="address in Addresses">
+          <li>{{address.name}} - {{address.address}}</li>
+        </ul>
+      </div>
+    </div>
   </ion-content>
 </ion-view>
