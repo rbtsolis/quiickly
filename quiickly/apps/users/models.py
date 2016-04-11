@@ -84,8 +84,9 @@ class Address(models.Model):
 
 class Quiickler(models.Model):
 
-    user          = models.ForeignKey('User')
+    user          = models.OneToOneField(settings.AUTH_USER_MODEL)
     license_plate = models.CharField(_('Placa'), max_length=50)
+    avatar        = models.ImageField(null=True, blank=True, upload_to='quiickler_pics/')
 
     class Meta:
 
