@@ -36,6 +36,14 @@ MANAGERS = (
 SECRET_KEY = '#06@m&d08pz&ean+5jx1v7jc=-b6fyf(fom!w6754xc46yed19'
 
 
+LOCAL_APPS = [
+    'apps.orders.apps.OrdersConfig',
+    'apps.users',
+    'apps.products',
+    'apps.web',
+    'apps.drugstores',
+]
+
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,13 +51,6 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
-
-LOCAL_APPS = [
-    'apps.users',
-    'apps.products',
-    'apps.web',
-    'apps.drugstores',
 ]
 
 THIRD_PARTY_APPS = [

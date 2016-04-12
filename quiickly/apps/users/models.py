@@ -27,22 +27,24 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    id          = models.AutoField(primary_key=True, unique=True, blank=False, null=False)
-    username    = models.CharField(max_length=100, unique=True)
-    email       = models.EmailField(_('Correo'), unique=True, blank=False, null=False)
-    name        = models.CharField(_('Nombre'), max_length=100)
-    avatar      = models.URLField(_('Avatar'))
-    phone       = models.PositiveIntegerField(_('Teléfono'))
-    address     = models.ManyToManyField('Address')
+    id           = models.AutoField(primary_key=True, unique=True, blank=False, null=False)
+    username     = models.CharField(max_length=100, unique=True)
+    display_name = models.CharField('Nombre', max_length=50)
+    email        = models.EmailField(_('Correo'), unique=True, blank=False, null=False)
+    name         = models.CharField(_('Nombre'), max_length=100)
+    avatar       = models.URLField(_('Avatar'))
+    phone        = models.PositiveIntegerField(_('Teléfono'))
+    address      = models.ManyToManyField('Address')
 
     verify_code = models.CharField(max_length=512, blank=True, null=True, editable=False)
     date_joined = models.DateTimeField(_('Fecha de Ingreso'), auto_now_add=True)
     modified    = models.DateTimeField(_('Fecha Modificado'), auto_now=True)
+    os          = models.CharField(_('Sistema Operativo'), max_length=50)
 
-    objects = UserManager()
+    objects     = UserManager()
 
-    is_active = models.BooleanField(default = True)
-    is_staff = models.BooleanField(default = False)
+    is_active   = models.BooleanField(default = True)
+    is_staff    = models.BooleanField(default = False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name', 'avatar', 'phone']

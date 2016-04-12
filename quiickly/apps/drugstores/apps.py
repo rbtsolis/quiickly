@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DrugstoresConfig(AppConfig):
-    name = 'drugstores'
+    name = 'apps.drugstores'

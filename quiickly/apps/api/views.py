@@ -7,7 +7,8 @@ This is an API of quickly team
 from rest_framework.decorators import permission_classes
 from rest_framework import permissions, viewsets
 from apps.products.serializers import ProductSerializer, OrderSerializer
-from apps.products.models import Product, Order
+from apps.products.models import Product
+from apps.orders.models import Order
 
 
 '''

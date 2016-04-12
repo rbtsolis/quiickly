@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from apps.products.models import Product, Order
+from apps.orders.models import Order
+from .models import Product
 
 
 '''

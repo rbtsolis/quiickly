@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
 
@@ -23,6 +24,7 @@ urlpatterns = [
     url(r'^su/', admin.site.urls),
     url(r'^api/', include('apps.api.urls')),
     url(r'^', include('apps.web.urls')),
+    url(r'^droguerias/', include('apps.drugstores.urls')),
     url(r'^login/', login_ajax),
     url(r'^logout/', Logout),
 ]
@@ -33,4 +35,4 @@ if settings.DEBUG or settings.DEBUG == False:
         url(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT,
         }),
-   ]
+   ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

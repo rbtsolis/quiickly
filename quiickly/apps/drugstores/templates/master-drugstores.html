@@ -1,0 +1,56 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Quiickly Team: love@quiickly.co">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="{% static 'drugstores/css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'master/css/master.css' %}">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+
+{% if user.is_anonymous %}
+
+<div class="login-background">
+
+
+    <div class="login-container text-center box-sizing">
+
+        <form id="login-form">
+        <img src="{% static 'drugstores/images/quiickly-logo.png' %}" width="100px">
+            {% csrf_token %}
+
+        <p>Administrador de Droguerías</p>
+
+        <input type="text" placeholder="email" class="input-form text-center box-sizing" id="input-email">
+
+        <input type="password" placeholder="contraseña" class="input-form text-center box-sizing" id="input-password">
+
+        <p class="box-sizing" id="login-notifications"></p>
+
+            <div id="submit-login" class="submit-button box-sizing">
+                <p>Iniciar Sesión</p>
+            </div>
+
+            <div id="notification-box" class="box-sizing"></div>
+
+        </form>
+
+    </div>
+
+    <script type="text/javascript" src="{% static 'master/js/jquery-2.2.3.min.js' %}"></script>
+    <script src="{% static 'drugstores/js/validations.js' %}"></script>
+</div>
+{% else %}
+    {% block body %}{% endblock body %}
+{% endif %}
+
+<footer>{% block footer %}{% endblock footer %}</footer>
+{% block scripts %}{% endblock scripts %}
+</body>
+</html>

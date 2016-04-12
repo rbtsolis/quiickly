@@ -4,7 +4,7 @@ from .base import *
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136']
+ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136',]
 
 
 '''
@@ -50,6 +50,11 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
+
+
+
+
+
 
 
 '''

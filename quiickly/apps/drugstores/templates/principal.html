@@ -1,0 +1,50 @@
+{% extends "master-drugstores.html" %}
+
+{% block body %}
+
+
+    {{ branch_office.name }}
+
+    <hr>
+    Pedidos de la sucursal
+    {% for order in branch_office.orders.all %}
+
+        <div class="all-orders">
+            <p>ID Pedido: {{ order.id }}</p>
+        </div>
+
+    {% empty %}
+        <div class="all-orders">
+            <p>No hay pedidos</p>
+        </div>
+    {% endfor %}
+
+    <hr>
+    Pedidos Pendientes:
+    {% for order in branch_office.orders.all %}
+
+        {% if order.unsolved %}
+            <div class="out-process-orders">
+                <p>ID Pedido: {{ order.id }}</p>
+                <p>{{ order.address }}</p>
+                <p>Total: {{ order.amount }}</p>
+            </div>
+        {% endif %}
+
+    {% empty %}
+        <div class="all-orders">
+            <p>No hay pedidos pendientes</p>
+        </div>
+    {% endfor %}
+    <hr>
+
+    {% for quiickler in branch_office.quiicklers.all %}
+
+        <p>ID Quiickler: {{ quiickler.id }}</p>
+
+    {% endfor %}
+
+    <a href="/logout/">Salir</a>
+
+
+{% endblock body %}

@@ -37,6 +37,10 @@ STATICFILES_DIRS = (
 )
 
 
+
+STATIC_ROOT = join(BASE_DIR, 'static/admin')
+
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
