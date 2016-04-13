@@ -1,6 +1,6 @@
 .login-background
 {
-    background: url('/static/drugstores/images/background.png') no-repeat;
+    background: url('/drugstores/images/background.png') no-repeat;
     background-size: cover;
     background-position: center;
     height: 100%;
