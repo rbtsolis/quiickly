@@ -34,14 +34,14 @@ DATABASES = {
 Static files configurations on Amazon S3
 
 '''
-AWS_STORAGE_BUCKET_NAME = 'upstudy'
+AWS_STORAGE_BUCKET_NAME = 'quiickly'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_ACCESS_KEY_ID = 'AKIAJC65GDXJ6RCHWX6A'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = 'AKIAJEGN7KTJESC3XGBA'
+AWS_SECRET_ACCESS_KEY = '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'
 
-STATIC_URL = 'https://s3.amazonaws.com/upstudy/'
+STATIC_URL = 'https://s3.amazonaws.com/quiickly/static/'
 
-STATIC_ROOT = dirname(join(BASE_DIR, 'static'))
+STATIC_ROOT = join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
@@ -50,11 +50,6 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
 )
-
-
-
-
-
 
 
 '''
