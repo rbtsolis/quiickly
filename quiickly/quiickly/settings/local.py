@@ -31,12 +31,9 @@ Static files configurations
 
 STATIC_URL = '/static/'
 
-
 STATICFILES_DIRS = (
     join(BASE_DIR, 'static'),
 )
-
-
 
 STATIC_ROOT = join(BASE_DIR, 'static/admin')
 
