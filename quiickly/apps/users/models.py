@@ -29,12 +29,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     id           = models.AutoField(primary_key=True, unique=True, blank=False, null=False)
     username     = models.CharField(max_length=100, unique=True)
-    display_name = models.CharField('Nombre', max_length=50)
+    display_name = models.CharField(_('Nombre'), max_length=100)
     email        = models.EmailField(_('Correo'), unique=True, blank=False, null=False)
-    name         = models.CharField(_('Nombre'), max_length=100)
-    avatar       = models.URLField(_('Avatar'))
+    avatar       = models.ImageField(_('Avatar'))
     phone        = models.PositiveIntegerField(_('Teléfono'))
-    address      = models.ManyToManyField('Address')
+
+    address      = models.ManyToManyField('Address', blank=True)
 
     verify_code = models.CharField(max_length=512, blank=True, null=True, editable=False)
     date_joined = models.DateTimeField(_('Fecha de Ingreso'), auto_now_add=True)
@@ -51,13 +51,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
     def __str__(self):
-        return "%s" % (self.name)
+        return "%s" % (self.display_name)
 
     def get_short_name(self):
-        return '%s' % (self.name)
+        return '%s' % (self.display_name)
 
     def full_name(self):
-        return '%s' % (self.name)
+        return '%s' % (self.display_name)
 
     def save(self, *args, **kwargs):
 
@@ -76,9 +76,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Address(models.Model):
 
+    name      = models.CharField(_('Nombre Dirección'), max_length=50)
     address   = models.TextField(_('Dirección'))
     latitude  = models.DecimalField(_('Latitud'), max_digits=20, decimal_places=5)
     longitude = models.DecimalField(_('Longitud'), max_digits=20, decimal_places=5)
+
+    def __str__(self):
+        return "%s - %s" % (self.name, self.id)
 
     class Meta:
         db_table = 'address'

@@ -18,7 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
 
-from apps.users.views import login_ajax, Logout
+from apps.users.views import login_ajax, Logout, CreateUser
 
 urlpatterns = [
     url(r'^su/', admin.site.urls),
