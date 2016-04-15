@@ -91,7 +91,3 @@ class AddressViewSet(viewsets.ModelViewSet):
 
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-
-
-@api_view(['PUT'])
-def user_address(request):
