@@ -42,8 +42,15 @@ class BranchOffice(models.Model):
     is_smart   = models.BooleanField(_('Smartphone'), default=True)
     avaliable  = models.BooleanField(default=False)
     quiicklers = models.ManyToManyField(Quiickler)
-    address    = models.ForeignKey(Address)
+    address    = models.ForeignKey(Address, verbose_name=_('Dirección'))
     schedule   = models.CharField(_('Horario'), max_length=50)
     products   = models.ManyToManyField(Product, verbose_name=_('Productos'))
     user       = models.OneToOneField(settings.AUTH_USER_MODEL, verbose_name=_('Usuario'))
     orders     = models.ManyToManyField(Order, verbose_name=_('Pedidos'))
+
+    def __str__(self):
+        return "%s" % (self.name)
+
+    class Meta:
+
+        db_table = 'branch_offices'
