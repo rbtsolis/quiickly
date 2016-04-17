@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
-from .views import principal_store_view
+from .views import list_products
 
 urlpatterns = [
-    url(r'^$', principal_store_view),
+    url(r'^$', list_products),
 ]
