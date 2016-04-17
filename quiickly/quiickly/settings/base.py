@@ -42,6 +42,7 @@ LOCAL_APPS = [
     'apps.products',
     'apps.web',
     'apps.drugstores',
+    'apps.store.apps.StoreConfig',
 ]
 
 DJANGO_APPS = [
