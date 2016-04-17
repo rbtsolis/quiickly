@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.conf import settings
+from apps.store import urls as store_urls
 
 from apps.users.views import login_ajax, Logout, CreateUser
 
@@ -24,6 +25,7 @@ urlpatterns = [
     url(r'^su/', admin.site.urls),
     url(r'^api/', include('apps.api.urls')),
     url(r'^', include('apps.web.urls')),
+    url(r'^tienda/', include(store_urls)),
     url(r'^droguerias/', include('apps.drugstores.urls')),
     url(r'^login/', login_ajax),
     url(r'^logout/', Logout),
