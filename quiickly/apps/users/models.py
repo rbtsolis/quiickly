@@ -83,6 +83,7 @@ class Address(models.Model):
     address   = models.TextField(_('Dirección'))
     latitude  = models.DecimalField(_('Latitud'), max_digits=20, decimal_places=5)
     longitude = models.DecimalField(_('Longitud'), max_digits=20, decimal_places=5)
+    is_favorite = models.BooleanField(default=False)
 
     def __str__(self):
         return "%s - %s" % (self.name, self.id)
