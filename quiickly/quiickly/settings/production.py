@@ -1,10 +1,10 @@
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136', 'localhost']
+ALLOWED_HOSTS = ['quiickly.co','www.quiickly.co','149.56.14.136']
 
 
 '''
