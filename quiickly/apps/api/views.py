@@ -7,12 +7,12 @@ This is an API of quickly team
 from rest_framework.decorators import permission_classes
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import Http404
 from django.contrib.auth.hashers import make_password
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 
 from apps.products.serializers import ProductSerializer, OrderSerializer
@@ -20,7 +20,9 @@ from apps.products.models import Product
 from apps.orders.models import Order
 from apps.users.models import User, Address
 from apps.users.views import base64_to_image
-from apps.users.serializers import UserCreateSerializer, UserSerializer, AddressSerializer
+from apps.users.serializers import (
+    UserCreateSerializer, UserSerializer, AddressSerializer
+)
 
 
 '''
@@ -47,19 +49,14 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 class UserViewSet(viewsets.ModelViewSet):
 
-
     queryset = User.objects.all()
     serializer_class = UserCreateSerializer
 
-
     def list(self, request, *args, **kwargs):
-        #self.serializer_class = UserSerializer
-        print("%s"%self.serializer_class)
+
         return super(UserViewSet, self).create(request, *args, **kwargs)
 
-
     def retrieve(self, request, pk=None, *args, **kwargs):
-
         try:
             id = int(pk)
         except:
@@ -71,17 +68,17 @@ class UserViewSet(viewsets.ModelViewSet):
         else:
             raise Http404
 
-
     def create(self, request, *args, **kwargs):
-
         request.POST._mutable = True
 
         image = base64_to_image(request.POST['avatar'])
         password = request.POST['password']
 
-        hash_password = make_password(password=password,
-        salt=None,
-        hasher='pbkdf2_sha256')
+        hash_password = make_password(
+            password=password,
+            salt=None,
+            hasher='pbkdf2_sha256'
+        )
 
         request.POST['password'] = hash_password
 
@@ -95,84 +92,6 @@ class AddressViewSet(viewsets.ModelViewSet):
 
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-
-
-
-'''
-@csrf_exempt
-@api_view(['POST'])
-def create_user(request):
-    """
-    {
-    "display_name": "My Name",
-    "password": "password",
-    "address": {
-        "name": "Mi Casa",
-        "address": "Calle #2 avenida 7, casa 132",
-        "latitude": 40.52648,
-        "longitude": -72.25648
-    },
-    "email": "some@domain.com",
-    "avatar": "base64 string",
-    "phone": "+575425625", # Try with numbers if fail
-    "os": "Android"
-    }
-    """
-    display_name = request.POST['display_name']
-    password = request.POST['password']
-    address_name = request.POST['address.name']
-    address = request.POST['address.address']
-    latitude = request.POST['address.latitude']
-    longitude = request.POST['address.longitude']
-    email = request.POST['email']
-    avatar = request.POST['avatar']
-    phone = request.POST['phone']
-    os = request.POST['os']
-
-    request.POST._mutable = True
-
-    image = base64_to_image(request.POST['avatar'])
-    password = request.POST['password']
-
-    hash_password = make_password(password=password,
-    salt=None,
-    hasher='pbkdf2_sha256')
-
-    request.POST['password'] = hash_password
-
-    if image is not None:
-        request.POST['avatar'] = image
-
-    address_created = Address.objects.create(
-            name=name, address=address,
-            latitude=latitude, longitude=longitude
-    )
-
-    user_created = User.objects.create(
-            display_name=display_name, password=hash_password, email=email,
-            avatar=avatar, phone=phone, os=os
-        )
-
-    user_created.address.add(address_created)
-
-    user = {
-
-            'display_name' : user_created.display_name,
-            'email' : user_created.email,
-            'avatar' : user_created.avatar.url,
-            'phone' : user_created.phone,
-            'os' : user_created.os,
-            'name' : address_created.name,
-            'address' : address_created.address,
-            'latitude' : address_created.latitude,
-            'longitude' : address_created.longitude
-    }
-
-    return Response({ 'user': user })
-'''
-
-
-from django.utils.decorators import method_decorator
 
 
 class CreateUser(APIView):
@@ -206,18 +125,15 @@ class CreateUser(APIView):
         else:
             raise Http404
 
-
     @method_decorator(csrf_exempt)
     def post(self, request, format=None):
-
 
         image = base64_to_image(request.data['avatar'])
         password = request.data['password']
 
-
-        hash_password = make_password(password=password,
-        salt=None,
-        hasher='pbkdf2_sha256')
+        hash_password = make_password(
+            password=password, salt=None, hasher='pbkdf2_sha256'
+        )
 
         password = hash_password
 
@@ -226,23 +142,22 @@ class CreateUser(APIView):
         else:
             avatar = request.data['avatar']
 
-
         user = User(
-            display_name = request.data['display_name'],
-            email = request.data['email'],
-            avatar = avatar,
-            password = hash_password,
-            phone = request.data['phone'],
-            os = request.data['os']
+            display_name=request.data['display_name'],
+            email=request.data['email'],
+            avatar=avatar,
+            password=hash_password,
+            phone=request.data['phone'],
+            os=request.data['os']
         )
 
         user.save()
 
         address = Address(
-            name      = request.data['name'],
-            address   = request.data['address'],
-            latitude  = request.data['latitude'],
-            longitude = request.data['longitude']
+            name=request.data['name'],
+            address=request.data['address'],
+            latitude=request.data['latitude'],
+            longitude=request.data['longitude']
         )
 
         address.save()
@@ -254,4 +169,4 @@ class CreateUser(APIView):
         return Response(serializer.data)
 
 
-create_user  = CreateUser.as_view()
+create_user = CreateUser.as_view()

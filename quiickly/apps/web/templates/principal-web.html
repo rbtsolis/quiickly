@@ -1,0 +1,105 @@
+{% load static from staticfiles %}
+
+{% block title %}Amor a domicilio{% endblock title %}
+
+{% block description %}En Quiickly enviamos condones cuandos mas los necesitas{% endblock description %}
+
+{% block keywords %}
+  Condones, App, movil, preservativos, cali, caracol, adn, miguelreng, miguel, rengifo, quiickly, quickly, startup, colombia, cali, sexo, sexual, sensual, durex, domicilio, 20, minutos, programado, express, embarazos, no, deseados, amor, corazon, amistad, quiickly box, caja sorpresa
+{% endblock keywords %}
+
+{% block body %}
+
+      <!-- Principal -->
+      <section class="layout index-layout">
+        <div class="posterMenu">
+          <figure class="layout-contentLogo">
+              <img src="{% static 'web/images/blog-blanco.png' %}" alt="Quiickly - quiickly.co" />
+
+          </figure>
+          <div class="menuNav">
+              <ul class="listMenu">
+                  <li>
+
+                  </li>
+              </ul>
+          </div>
+        </div>
+        <div class="info">
+          <div class="layout-content posterContent">
+            <p class="layout-contentMoto">La mejor forma de disfrutar con tu pareja sin rutinas</p>
+            <h1 class="layout-contentTitle">Recibe una caja con productos sorpresa cada mes y vive nuevos momentos con tu pareja</h1>
+            <br>
+            <br>
+            <div class="contentMessenger">
+              <a href="http://bit.ly/quierounquiickly"><button ><img src="{% static 'web/images/messenger.png' %}" alt="Píde tu Quiickly Box por Messenger">Pídelo por Messenger</button></a>
+              <span class="info-btn-index">Habla con nuestro Chatbot, Mr Quiickly!</span>
+            </div>              
+          </div>
+        </div>        
+      </section>
+
+      <!-- Qué es -->
+      <div class="que-es-section">
+        <h2 class="features-title">¿Qué es?</h2>
+        <br>        
+        <div class="content-feature">
+          <p class="text-fe que-es">Amar es cuidarse, pero también divertirse y con Quiickly tienes las dos opciones, somos la excusa perfecta para el amor. Enviamos condones cuando más los necesitas ¿con pareja? Quiickly Box es la mejor forma para disfrutar en pareja y dejar a un lado la monotonía.</p>
+        </div>
+      </div>
+
+      <!-- Caracteristicas -->
+      <div class="features">
+        <h2 class="features-title">Características</h2>
+        <div class="content-feature">
+          <div class="col1">
+            <img src="{% static 'web/images/sorpresa.png' %}" alt="Recibe productos sorpresa todos los meses">
+            <h3 class="title-fe">Productos sorpresa</h3>
+            <p class="text-fe">Olvidate de la monotonía y recibe cada mes productos nuevos.</p>
+          </div>
+          <div class="col2">
+            <img src="{% static 'web/images/map.png' %}" alt="Envío gratis a todo el país">
+            <h3 class="title-fe">Envío gratis a todo Colombia</h3>
+            <p class="text-fe">En cualquier lugar donde estes llegará tu Quiickly.</p>
+          </div>
+          <div class="col3">
+            <img src="{% static 'web/images/pack.png' %}" alt="Somos discretos, entrega discreta Quiickly">
+            <h3 class="title-fe">Somos discretos</h3>
+            <p class="text-fe">Nadie se enterará de nuestra llegada solo tú, sera una discreta entrega.</p>
+          </div>
+        </div>        
+      </div>
+      
+      <!-- App móvil -->
+      <div class="app">
+        <div class="izq">
+          <img src="{% static 'web/images/app-android.png' %}" alt="Que esperas por descargar Quiickly App">
+        </div>
+        <div class="dere">
+          <h2>Descarga Quiickly App</h2>
+            <p>Para los momentos de emergencia siempre es bueno tener a la mano un Quiickly, condones cuando más los necesitas en menos de 20 minutos.</p>
+            <a id="descarga" style="width: 32%;" href="https://play.google.com/store/apps/details?id=co.quiickly" target="_blank"><img id="imgGoogle" src="{% static 'web/images/playstore.png' %}" alt="Descarga Quiickly en Google Play" /></a>
+        </div>
+      </div>
+
+{% endblock body %}
+
+
+{% block scripts %}
+  <!-- Chatra {literal} -->
+        <script>
+            ChatraID = 'N29YHiHfYmGieYFij';
+            (function(d, w, c) {
+                var n = d.getElementsByTagName('script')[0],
+                    s = d.createElement('script');
+                w[c] = w[c] || function() {
+                    (w[c].q = w[c].q || []).push(arguments);
+                };
+                s.async = true;
+                s.src = (d.location.protocol === 'https:' ? 'https:': 'http:')
+                    + '//call.chatra.io/chatra.js';
+                n.parentNode.insertBefore(s, n);
+            })(document, window, 'Chatra');
+        </script>
+        <!-- /Chatra {/literal} -->
+{% endblock scripts %}

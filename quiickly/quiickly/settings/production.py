@@ -44,7 +44,7 @@ STATIC_URL = 'https://s3.amazonaws.com/quiickly/static/'
 STATIC_ROOT = join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = (
-    join(BASE_DIR, 'static'),
+    join(BASE_DIR, 'staticfiles'),
 )
 
 STATICFILES_FINDERS = (

@@ -1,0 +1,158 @@
+
+{% extends "master-web.html" %}
+
+{% block title %}Amor a domicilio{% endblock title %}
+
+{% block description %}En Quiickly enviamos condones cuandos mas los necesitas.{% endblock description %}
+
+{% block keywords %}
+  Condones, App, movil, preservativos, cali, caracol, adn, miguelreng, miguel, rengifo, quiickly, quickly, startup, colombia, cali, sexo, sexual, sensual, durex, domicilio, 20, minutos, programado, express, embarazos, no, deseados, amor, corazon, amistad
+{% endblock keywords %}
+
+    <body>
+
+      <!-- Principal -->
+      <section class="layout">
+        <div class="info">
+          <div class="layout-content posterContent">
+              <p class="layout-contentMoto">Por que amar es cuidarse, pero también divertirse y con Quiickly tienes las dos:</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Caracteristicas -->
+      <div class="features">
+          <h2 class="features-title">Características</h2>
+          <div class="content-feature">
+            <div class="col1">
+              <img src="{% static 'web/images/ubica.png' %}" alt="Rastrea tu Pedido con Quiickly">
+              <h3 class="title-fe">Rastrea tu Pedido</h3>
+              <p class="text-fe">Ubica en tiempo real al Quiickler (mensajero) podrás saber a cuantos minutos y kilómetros esta de tu ubicación.</p>
+            </div>
+            <div class="col2">
+              <img src="{% static 'web/images/7.png' %}" alt="En Quiickly enviamos condones las 24 horas del dia">
+              <h3 class="title-fe">Servicio 24/7</h3>
+              <p class="text-fe">Trabajamos las 24 horas del día para brindarte el mejor servicio, pide en la madrugada luego de una fiesta o cuando quieras.</p>
+            </div>
+            <div class="col3">
+              <img src="{% static 'web/images/cash.png' %}" alt="Paga contraentrega en Quiickly">
+              <h3 class="title-fe">Pago Contraentrega</h3>
+              <p class="text-fe">No te preocupes buscando tu tarjeta de crédito o pidiendo alguna prestada, solo pide un Quiickly y págalo cuando llegue.</p>
+            </div>
+          </div>
+          <br>
+          <div class="content-feature">
+            <div class="col1">
+              <img src="{% static 'web/images/pack.png' %}" alt="Con Quiickly hay discredad">
+              <h3 class="title-fe">Somos Discretos</h3>
+              <p class="text-fe">Nadie se enterará de nuestra llegada solo tú, nuestros Quiicklers serán discretos al momento de la entrega.</p>
+            </div>
+            <div class="col2">
+              <img src="{% static 'web/images/fast.png' %}" alt="Enviamos tus condones en 20 minutos o menos">
+              <h3 class="title-fe">20 Minutos o Gratis</h3>
+              <p class="text-fe">Somos rápidos! llegaremos cuanto antes. El tiempo estimado de entrega es de menos de 20 mins de no ser así tu pedido será totalmente gratis.</p>
+            </div>
+          </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="main-option">
+        <div class="content-main">
+          <h2 class="main-title">Escoge el que mas te gusta</h2>
+          <p>Compra distintos tipos de condones o accesorios para que disfrutes el momento!</p>
+          <img src="{% static 'web/images/condones-a.png' %}" alt="En Quiickly encuentras muchas variedad de condones">
+          <div class="main-btn">
+            <a href="#"><button class="button-store">Compralo Ahora!</button></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiickly Social -->
+      <div class="phrase">
+        <div class="content-phrase">
+          <h3>Esperar <bold>20 minutos</bold> no se compara a esperar <bold>9 meses</bold></h3>
+          <p>En Quiickly tenemos un objetivo y es reducir el número de embarazos no deseados en Latinoamérica.</p>
+          <!--<a href="#"><button class="button-social">Descubre como lo hacemos!</button></a>-->
+        </div>
+      </div>
+
+      <!-- App móvil -->
+      <div class="app">
+        <div class="izq">
+          <img src="{% static 'web/images/android.png' %}" alt="Que esperar por descargar Quiickly App">
+        </div>
+        <div class="dere">
+          <h2>Descarga Quiickly App</h2>
+            <p>Para los momentos de emergencia siempre es bueno tener a la mano un Quiickly, condones cuando más los necesitas en menos de 20 minutos.</p>
+            <a id="descarga" style="width: 32%;" href="https://play.google.com/store/apps/details?id=co.quiickly" target="_blank"><img id="imgGoogle" src="{% static 'web/images/playstore.png' %}" alt="" /></a>
+        </div>
+      </div>
+
+
+{% block scripts %}
+      <script>
+    $( document ).ready(function() {
+
+        scaleVideoContainer();
+
+        initBannerVideoSize('.video-container .poster img');
+        initBannerVideoSize('.video-container .filter');
+        initBannerVideoSize('.video-container video');
+
+        $(window).on('resize', function() {
+            scaleVideoContainer();
+            scaleBannerVideoSize('.video-container .poster img');
+            scaleBannerVideoSize('.video-container .filter');
+            scaleBannerVideoSize('.video-container video');
+        });
+
+    });
+
+    function scaleVideoContainer() {
+
+        var height = $(window).height() + 5;
+        var unitHeight = parseInt(height) + 'px';
+        $('.homepage-hero-module').css('height',unitHeight);
+
+    }
+
+    function initBannerVideoSize(element){
+
+        $(element).each(function(){
+            $(this).data('height', $(this).height());
+            $(this).data('width', $(this).width());
+        });
+
+        scaleBannerVideoSize(element);
+
+    }
+
+    function scaleBannerVideoSize(element){
+
+        var windowWidth = $(window).width(),
+        windowHeight = $(window).height() + 5,
+        videoWidth,
+        videoHeight;
+
+        console.log(windowHeight);
+
+        $(element).each(function(){
+            var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+            $(this).width(windowWidth);
+
+            if(windowWidth < 1000){
+                videoHeight = windowHeight;
+                videoWidth = videoHeight / videoAspectRatio;
+                $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+                $(this).width(videoWidth).height(videoHeight);
+            }
+
+            $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+        });
+    }
+    </script>
+{% endblock scripts %}

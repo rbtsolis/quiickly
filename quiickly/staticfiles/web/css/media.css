@@ -1,0 +1,331 @@
+@-ms-viewport {
+	width: device-width;
+}
+@viewport {
+	width: device-width;
+}
+
+@media (max-width: 1920px) {
+
+  .app {
+    height: 532px;
+  }
+
+  #imgGoogle {
+    width: 32%;
+  }
+
+	#pulzo, #xataka {
+    width: 135px;
+	}
+
+  #eltiempo {
+    width: 250px;
+  }
+
+	.info {
+    padding-top: 7%;
+	}
+
+  .izq img {
+    width: 79.3%;
+  }
+
+}
+
+@media (max-width: 1599px) {
+
+  .app {
+    height: 444px;
+  }
+
+}
+
+@media (max-width: 1280px) {
+  .app {
+    height: 355px;
+  }
+
+	.info {
+		padding-top: 18%;
+	}
+
+	.footer-media img {
+		width: 160px;
+	}
+
+  #eltiempo {
+    width: 222px;
+  }
+}
+
+@media (max-width: 1069px) {
+
+  .app {
+    height: 285px;
+  }
+
+	.footer-media  img {
+		width: 150px;
+	}
+
+	.izq img {
+    width: 76.2%;
+  }
+
+  .contentMessenger {
+    width: 30%;
+  }
+
+  #eltiempo {
+    width: 200px;
+  }
+}
+
+@media (max-width: 999px) {
+
+  .app {
+    height: 276px;
+  }
+
+	.izq img {
+    width: 79%;
+  }
+
+  .contentMessenger {
+    width: 32%;
+  }
+
+  .layout-contentTitle {
+    width: 53%;
+  }
+
+}
+
+@media (max-width:980px) {
+  .izq img {
+    width: 80.7%;
+  }
+
+  .contentMessenger {
+    width: 33%;
+  }
+}
+
+@media (max-width: 800px) {
+  .layout-contentMoto {
+    font-size: 33px;
+    width: 66%;
+  }
+
+  .features {
+    height: 390px;
+  }
+
+  .izq img {
+    width: 99%;
+  }
+
+	.layout-contentTitle {
+    width: 66%;
+	}
+
+	.info {
+    padding-top: 27%;
+  }
+
+	.footer-media img {
+		width: 123px;
+	}
+
+	.footer-media img {
+    width: 150px;
+	}
+
+  .contentMessenger {
+    width: 40%;
+  }
+
+  #eltiempo {
+    width: 190px;
+  }
+
+  #imgGoogle {
+    width: 50%;
+  }
+
+  .que-es {
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-contentMoto {
+    font-size: 30px;
+  }
+
+  .layout-contentTitle {
+    font-size: 16px;
+  }
+
+  .info {
+    padding-top: 28%;
+  }
+
+	.izq img {
+    width: 93%;
+	}
+
+  .menuNav {
+    width: 20%;
+  }
+
+	.features {
+    height: 550px;
+  }
+
+  .content-feature {
+    width: 95%;
+  }
+
+  .col1, .col2, .col3 {
+    width: 49%;
+  }
+
+  .app {
+    height: 250px;
+  }
+
+  .footer-title {
+    font-size: 1.5em;
+  }
+
+	.footer-media img {
+		width: 150px ;
+	}
+
+  .contentMessenger {
+    width: 43%;
+  }
+
+}
+
+@media (max-width: 643px) {
+
+  .app {
+    height: 234px;
+  }
+
+  .izq {
+    width: 43%;
+    margin-top: 9px;
+  }
+
+  .dere {
+    width: 36%;
+  }
+
+  .dere h2 {
+    font-size: 1.3em;
+  }
+
+  .dere p {
+    font-size: 0.9em;
+  }
+
+  #imgGoogle {
+    width: 65%;
+  }
+
+  .contentMessenger {
+    width: 51%;
+  }
+
+  .que-es {
+    width: 73%;
+  }
+}
+
+@media (max-width: 360px) {
+  .layout-contentMoto {
+    font-size: 25px;    
+    width: 79%;
+  }
+
+  .info {
+    padding-top: 25%;
+  }
+
+  .layout-contentTitle {
+    font-size: 15px;
+  }
+
+  .layout-contentTitle {
+    width: 80%;
+  }
+
+  .menuNav {
+    width: 37%;
+    margin-top: 6%;
+  }
+
+  .features {
+    height: 870px;
+  }
+
+  .col1, .col2, .col3 {
+    width: 90%;
+    padding-bottom: 10%;
+  }
+
+  .app {
+    height: 300px;
+    width: 100%;
+  }
+
+  .izq {
+    display: none;
+  }
+
+  .dere {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    float: none;
+    margin-right: none;
+  }
+
+  .dere h2 {
+    font-weight: 600;
+  }
+
+  .footer-title {
+    display: none;
+  }
+
+  .footer-media {
+    display: none;
+  }
+
+  .contentMessenger {
+    width: 89%;
+  }
+
+  .que-es-section {
+    height: 420px;
+  }
+
+  .que-es {
+    width: 83%;
+  }
+}
+
+@media (max-width: 320px) {
+
+	.que-es {
+    width: 83%;
+    font-size: 1.05em;
+  }
+
+}

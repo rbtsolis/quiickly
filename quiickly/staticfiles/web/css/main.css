@@ -1,0 +1,273 @@
+body {
+	/* Rectangle 33: */
+	background-image: linear-gradient(-134deg, #673AB7 0%, #C86DD7 100%);
+	box-shadow: inset -1px -114px 72px 0px rgba(0,0,0,0.19);
+	margin: 0px;
+}
+@font-face {
+	font-family: 'BebasNeue-Regular';
+	src:url('../fonts/bebas/BebasNeue Regular.otf');
+	src:url('../fonts/bebas/BebasNeue Regular.otf'),
+		url('../fonts/bebas/ttf/BebasNeue Regular.ttf') format('truetype'),
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Montserrat-Light';
+	src:url('../fonts/montserrat/Montserrat-Light.otf');
+	src:url('../fonts/montserrat/Montserrat-Light.otf'),
+	font-weight: lighter;
+	font-style: normal;
+}
+
+
+
+.listMenu {
+	word-spacing: 0px;
+}
+
+.listMenu li{
+	display: inline-block;
+}
+
+.listMenu li a {
+	text-decoration: none;
+}
+
+.listMenu li a:hover {
+	text-decoration: underline;
+	color: rgba(103, 58, 183, 0.64);
+}
+
+.listMenu li a span:hover {
+	color: rgba(103, 58, 183, 0.64);
+
+
+}
+
+.button-store {
+	background: #F98789 none repeat scroll 0% 0%;
+	border-radius: 5px;
+	line-height: 50px !important;
+	font-family: avenir next;
+	width: 100%;
+	border: 0px none;
+	color: #FFF;
+	font-size: 1.4em;
+	height: 49px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+.button-store:hover {
+	background: #CB7B7C none repeat scroll 0% 0%;
+}
+
+
+img{
+    vertical-align: bottom;
+}
+figure{
+    margin: 0px;
+}
+.u-wrapper{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0px 15px;
+}
+
+/* -------- *//* -------- */
+/* ------ New CSS  ------ */
+/* -------- *//* -------- */
+
+.homepage-hero-module {
+    border-right: none;
+    border-left: none;
+    position: relative;
+		width: 100%;
+}
+.no-video .video-container video,
+.touch .video-container video {
+    display: none;
+}
+.no-video .video-container .poster,
+.touch .video-container .poster {
+    display: block !important;
+}
+.video-container {
+    position: relative;
+    bottom: 0%;
+    left: 0%;
+    height: 660px;
+    width: 100%;
+    overflow: hidden;
+    background-image: linear-gradient(-134deg, rgba(103, 58, 183, 0.53) 0%, rgba(200, 109, 215, 0.9) 100%);
+}
+.video-container .poster img {
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
+
+.video-container .posterMenu {
+	width: 100%;
+	position: absolute;
+}
+
+/*.video-container .posterContent {
+	width: 100%;
+	position: absolute;
+}
+
+.video-container .posterImage {
+	width: 100%;
+	position: absolute;
+}*/
+
+.video-container .filter {
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+}
+.video-container video {
+    position: absolute;
+    z-index: -99;
+    bottom: 0;
+}
+.video-container video.fillWidth {
+    width: 100%;
+}
+
+.layout-contentMoto{
+    font-size: 42px;
+	margin: 0;
+	text-align: center;
+	color: #fff;
+	font-weight: 600;;
+    font-family: 'Avenir Next', sans-serif;
+	width: 62%;
+	margin: 0 auto;
+	text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
+}
+
+.layout-contentTitle{
+	font-size: 20px;
+	color: #fff;
+	text-align: center;
+	font-weight: 400;
+	font-family: 'Avenir Next', sans-serif;
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 20px;
+	text-shadow: 0px 2px 4px rgba(0,0,0,0.50);
+}
+
+.layout-contentTitle a{
+		color: #fff !important;
+}
+
+.content-form {
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+.content-form form {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.content-form form input {
+	height: 49px;
+	margin: 0 auto;
+	border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+	border: none;
+	font-family: avenir next;
+	font-size: 1em;
+	padding-left: 2%;
+	color: #757474;
+}
+
+.content-input {
+	margin: 0px auto;
+	margin-bottom: 5px;
+}
+
+#direcc {
+    width: 97.7%;
+}
+
+.layout-contentStore {
+	width: 40%;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.layout-contentStore label {
+	font-family: avenir next;
+	color: rgba(255, 255, 255, 0.53);
+	font-size: 0.9em;
+}
+
+.footer-title {
+	font-family: 'Avenir Next', sans-serif;
+	font-size: 29px;
+	color: rgba(255, 255, 255, 0.93);
+}
+
+.footer-media p {
+	font-family: 'Avenir Next', sans-serif;
+	color: RGBA(62, 36, 108, 0.6);;
+}
+
+.footer-media a {
+	font-family: 'Avenir Next', sans-serif;
+	color: RGBA(62, 36, 108, 0.6);;
+}
+
+.layout-contentLogo img,
+.layout-contentStore img{
+    width: 160px;
+}
+
+
+.footer{
+    background-image: linear-gradient(-134deg, #673AB7 0%, #C86DD7 100%);
+    color: #ffffff;
+    z-index: 1000;
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.footer h2{
+    margin: 13px;
+    font-weight: 600;;
+    margin-bottom: 35px;
+}
+
+.footer ul{
+    padding: 0px;
+}
+
+.footer li{
+    display: inline-block;
+    padding: 0px 15px;
+    opacity: 0.7;
+}
+
+.footer li:hover{
+    opacity: 1;
+}
+
+.layout-contentLogo {
+    width: 20%;
+    float: left;
+    margin-left: 57px;
+    margin-top: 25px;
+}
+
+
+
+

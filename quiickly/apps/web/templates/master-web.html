@@ -1,0 +1,167 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title>Quiickly - {% block title %}{% endblock title %}</title>
+        <meta name="description" content="{% block description %}{% endblock description %}">
+        <meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
+        <meta name="author" content="Quiickly">
+        <link rel="stylesheet" href="{% static 'web/css/main.css' %}" />
+        <link rel="stylesheet" href="{% static 'web/css/screen.css' %}" />
+        <link rel="stylesheet" href="{% static 'web/css/media.css' %}" />
+    </head>
+
+<!-- Footer -->
+<body>
+
+    {% block body %}{% endblock body %}
+
+      <footer class="footer">
+          <h2 class="footer-title">La prensa habla acerca de nosotros</h2>
+          <ul class="footer-media">
+            <li>
+              <a href="http://www.eluniversal.com.co/tecnologia/lanzan-la-primera-aplicacion-para-pedir-condones-domicilio-210806" target="_blank">
+                <img src="{% static 'web/images/el-universal.png' %}" alt="Quiickly, la primera aplicacion para pedir condones a domicilio" />
+              </a>
+            </li>
+            <li>
+              <a  href="http://www.enter.co/chips-bits/apps-software/quiickly-la-aplicacion-colombiana-para-pedir-condones-a-domicilio/" target="_blank">
+                <img src="{% static 'web/images/enter-co.png' %}" alt="Quiickly la aplicacion colombiana para pedir condones a domicilio" />
+              </a>
+            </li>
+            <li>
+              <a href="http://www.pulzo.com/tecnologia/que-tal-un-quiickly-lanzan-la-primera-aplicacion-para-pedir-condones-domicilio/407610" target="_blank">
+                <img src="{% static 'web/images/pulzo.png' %}" id="pulzo" alt="Que tal un Quiickly lanzan la primera aplicacion para pedir condones a domicilio" />
+              </a>
+            </li>
+            <li>
+              <a  href="http://www.xataka.com.co/aplicaciones/quiickly-es-la-app-colombiana-que-te-permite-pedir-condones-a-domicilio" target="_blank">
+                <img src="{% static 'web/images/xataka.png' %}" id="xataka" alt="Quiickly es la app colombiana que te permite pedir condones a domicilio" />
+              </a>
+            </li>
+          </ul>
+          <br>
+          <ul class="footer-media">
+            <li>
+              <a href="http://www.noticiascaracol.com/valle/cali/jovenes-le-apuestan-evitar-embarazos-no-deseados-en-cali" target="_blank">
+                <img src="{% static 'web/images/caracol.png' %}" alt="Quiickly, jovenes le apuestan evitar embarazos no deseados en Cali" />
+              </a>
+            </li>
+            <li>
+              <a  href="http://www.elespectador.com/noticias/nacional/condones-domicilio-cali-articulo-579297" target="_blank">
+                <img src="{% static 'web/images/espectador.png' %}" alt="Quiickly, condones domicilio Cali" />
+              </a>
+            </li>
+            <li>
+              <a  href="http://www.eltiempo.com/tecnosfera/aplicaciones-colombianas-para-android-iphone/16445501" target="_blank">
+                <img src="{% static 'web/images/eltiempo.png' %}" id="eltiempo" alt="Quiickly, aplicaciones colombiana para android iphone" />
+              </a>
+            </li>
+          </ul>
+          <br>
+          <br>
+          <ul class="footer-info">
+            <ul class="listMenu">
+              <li><a href="http://twitter.com/quiicklyapp" target="_blank"><img src="{% static 'web/images/twitter.png' %}" alt="Quiickly en Twitter"></a></li>
+              <li><a href="http://facebook.com/quiickly" target="_blank"><img src="{% static 'web/images/facebook.png' %}" alt="Quiickly en Facebook"></a></li>
+              <li><a href="http://instagram.com/quiickly" target="_blank"><img src="{% static 'web/images/instagram.png' %}" alt="Sigue a Quiickly en Instagram"></a></li>
+            </ul>
+            <br>
+            <ul class="listMenu">
+              <li><a href="href://quiickly.co/blog"><span>Blog</span></a></li>
+              <!--<li><a href="acerca.html"><span>Acerca de Nosotros</span></a></li>-->
+              <li><a href="emailto:m@quiickly.co"><span>Prensa</span></a></li>
+              <li><a href="emailto:love@quiickly.co"><span>Contacto</span></a></li>
+            </ul>
+            <p>Todos los derechos reservados 2016, Quiickly.</p>
+          </ul>
+      </footer>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-34909647-5', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-KV44KL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KV44KL');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Facebook Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '211843885865712');
+    fbq('track', "PageView");</script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=211843885865712&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <!--
+    // ViewContent
+// Track key page views (ex: product page, landing page or article)
+fbq('track', 'ViewContent');
+
+
+// Search
+// Track searches on your website (ex. product searches)
+fbq('track', 'Search');
+
+
+// AddToCart
+// Track when items are added to a shopping cart (ex. click/landing page on Add to Cart button)
+fbq('track', 'AddToCart');
+
+
+// AddToWishlist
+// Track when items are added to a wishlist (ex. click/landing page on Add to Wishlist button)
+fbq('track', 'AddToWishlist');
+
+
+// InitiateCheckout
+// Track when people enter the checkout flow (ex. click/landing page on checkout button)
+fbq('track', 'InitiateCheckout');
+
+
+// AddPaymentInfo
+// Track when payment information is added in the checkout flow (ex. click/landing page on billing info)
+fbq('track', 'AddPaymentInfo');
+
+
+// Purchase
+// Track purchases or checkout flow completions (ex. landing on "Thank You" or confirmation page)
+fbq('track', 'Purchase', {value: '1.00', currency: 'USD'});
+
+
+// Lead
+// Track when a user expresses interest in your offering (ex. form submission, sign up for trial, landing on pricing page)
+fbq('track', 'Lead');
+
+
+// CompleteRegistration
+// Track when a registration form is completed (ex. complete subscription, sign up for a service)
+fbq('track', 'CompleteRegistration');
+
+
+// Other
+// 
+fbq('track', 'Other');
+    -->
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+    </body>
+
+</html>
