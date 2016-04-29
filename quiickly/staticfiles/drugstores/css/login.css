@@ -1,8 +1,12 @@
 .login-background
 {
-    background: url('/drugstores/images/background.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    align-items: center;
+    background: rgb(191,108,214);
+    background: -moz-linear-gradient(45deg,  rgba(191,108,214,1) 1%, rgba(95,58,178,1) 100%);
+    background: -webkit-linear-gradient(45deg,  rgba(191,108,214,1) 1%,rgba(95,58,178,1) 100%);
+    background: linear-gradient(45deg,  rgba(191,108,214,1) 1%,rgba(95,58,178,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bf6cd6', endColorstr='#5f3ab2',GradientType=1 );
+    display: flex;
     height: 100%;
     position: fixed;
     width: 100%;
@@ -16,7 +20,7 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
     color: white;
-    margin: 12% auto 0 auto;
+    margin: auto;
     max-width: 30em;
     padding: 1em;
     width: 80%;
