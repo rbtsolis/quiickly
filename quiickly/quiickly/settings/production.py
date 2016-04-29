@@ -38,6 +38,7 @@ AWS_STORAGE_BUCKET_NAME = 'quiickly'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_ACCESS_KEY_ID = 'AKIAJEGN7KTJESC3XGBA'
 AWS_SECRET_ACCESS_KEY = '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'
+AWS_PRELOAD_METADATA = True
 
 STATIC_URL = 'https://s3.amazonaws.com/quiickly/static/'
 
